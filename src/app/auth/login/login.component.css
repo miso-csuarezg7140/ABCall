@@ -1,0 +1,52 @@
+:root {
+  --primary-color: #96C560;
+  --gris-10: #d3d3d3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  /* color: var(--primary-color); */
+  color: #96C560;
+  font-size: 32px;
+}
+
+.full-height {
+  height: 100vh; /* Tomar toda la altura de la ventana */
+}
+
+.logo-login {
+  top: 0px;
+  left: 0px;
+  /* width: 100px; */
+  height: 100vh;
+  background-color: #d3d3d3;
+  /* border: 5px solid green; */
+}
+
+.img {
+  /* border: 5px solid red; */
+  /* top: 184px;
+  left: 20px; */
+  width: auto;
+  height: auto;
+  /* background-image: url(../../../assets/logo-login.png); */
+  /* background-position: center center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.btn-login {
+  --bs-btn-bg: #96C560;
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg:#65953A;
+  height: 56px;
+}

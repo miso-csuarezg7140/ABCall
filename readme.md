@@ -1,53 +1,27 @@
-# ABCall - Sistema de Gestión de Incidencias para Pequeñas y Medianas Empresas
+# Abcall
 
-## Descripción
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
-**ABCall** es una plataforma dedicada a la tercerización de servicios de atención al cliente, diseñada específicamente para pequeñas y medianas empresas. El sistema permite gestionar llamadas de entrada y salida, registrar incidentes (PQRs), y automatizar procesos de escalamiento, utilizando tecnologías de analítica predictiva e inteligencia artificial.
+## Development server
 
-La aplicación está diseñada tanto para web como para móvil y ofrece diferentes planes para las empresas, incluyendo funcionalidades como:
-- Registro de clientes y selección de plan (Emprendedor, Empresario, Empresario Plus).
-- Registro y consulta de incidentes a través de múltiples canales: web, móvil, telefónico, y correo electrónico.
-- Gestión de incidentes por parte de administradores y agentes de soporte.
-- Tableros de control e indicadores con estadísticas en tiempo real.
-- Servicios de IA generativa y analítica predictiva para la resolución de incidentes.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Tecnologías Utilizadas
+## Code scaffolding
 
-El proyecto ABCall está desarrollado usando las siguientes tecnologías:
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Backend:
-- **Python 3.8+**
-- **Flask** (Framework web)
-- **SQLAlchemy** (ORM)
-- **PostgreSQL** (Base de datos)
-- **JWT** (Autenticación)
-- **psycopg2-binary** (Conector de PostgreSQL)
+## Build
 
-### Frontend:
-- **Angular** (Framework para la aplicación web)
-- **Kotlin** (Para la aplicación móvil)
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Infraestructura y despliegue:
-- **Google Cloud Platform** (Despliegue de infraestructura)
-- **Docker** (Contenedores)
-- **Kubernetes** (Orquestación de contenedores)
+## Running unit tests
 
-### Plugins y Herramientas:
-- **Figma** (Prototipado visual)
-- **pgAdmin4** (Administración de la base de datos PostgreSQL)
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Características Principales
+## Running end-to-end tests
 
-- **Registro de incidentes y consultas**: Los usuarios finales pueden crear y gestionar incidentes a través de diferentes canales.
-- **Escalamiento automático de incidentes**: El sistema identifica incidentes no resueltos y los escala automáticamente según las reglas de negocio.
-- **Tableros de control en tiempo real**: Visualización de estadísticas, tiempos de resolución y datos relacionados con la atención al cliente.
-- **Analítica predictiva**: Utiliza IA para sugerir soluciones a los agentes de soporte y mejorar el tiempo de resolución de incidentes.
-- **Alta escalabilidad**: Diseñado para manejar hasta 1000 incidentes simultáneos con tiempos de respuesta óptimos.
-- **Seguridad y confidencialidad**: Implementación de autenticación JWT y control de acceso basado en roles (RBAC).
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Configuración del Proyecto
+## Further help
 
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/tu-usuario/abcall.git
-cd abcall
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

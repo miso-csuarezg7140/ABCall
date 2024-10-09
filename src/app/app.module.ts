@@ -10,10 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { AuthModule } from './auth/auth.module';
+
+
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
