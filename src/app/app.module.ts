@@ -11,11 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthModule } from './auth/auth.module';
-
+import { IncidentsComponent } from './incidents/incidents.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IncidentsComponent,
    ],
   imports: [
     BrowserModule,
