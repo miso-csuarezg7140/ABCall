@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-incidents',
   templateUrl: './incidents.component.html',
-  styleUrl: './incidents.component.css'
+  styleUrls: ['./incidents.component.css']
 })
-export class IncidentsComponent {
+export class IncidentsComponent implements OnInit {
+
+  tabActive = true;
+  tabDisabled = false;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
 }
