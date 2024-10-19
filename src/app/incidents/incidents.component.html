@@ -1,45 +1,50 @@
 <div class="container mx-auto p-6">
-
-    <!-- Título -->
-    <h1 class="text-3xl font-semibold mb-6">Incidentes</h1>
-
-    <!-- Barra de búsqueda -->
-    <div class="mb-6 flex items-center border border-gray-300 rounded-md p-2">
-        <input type="text" placeholder="Buscar incidentes..." class="w-full p-2 rounded-md text-gray-700 outline-none">
-        <button class="p-2 text-gray-500">
-            <i class="fas fa-search"></i> <!-- Icono de lupa -->
-        </button>
+    <div class="flex items-center justify-center">
+        <h1 class="text-3xl font-semibold mb-6">Incidentes</h1>
     </div>
 
-    <!-- Tabs -->
-    <div class="mb-6 flex space-x-4">
-        <button class="py-2 px-4 rounded-md font-medium text-lg bg-blue-500 text-white"
+    <div class="mb-8 flex items-center border-2 border-gray-300 rounded-full p-2">
+        <button class="p-2 text-gray-500">
+            <i class="fas fa-search"></i>
+        </button>
+        <input type="text" placeholder="Buscar incidentes..."
+            class="w-full p-2 rounded-full text-gray-700 outline-none">
+    </div>
+
+    <div class="mb-8 mt-6 flex rounded-full bg-gray-300">
+        <button class="flex-1 py-2 px-4 font-medium text-sm bg-white text-black-500 rounded-full border-none"
             [class.bg-gray-300]="!tabActive">
             Pendientes
         </button>
-        <button class="py-2 px-4 rounded-md font-medium text-lg text-gray-500 cursor-not-allowed"
+        <button class="flex-1 py-2 px-4 font-medium text-sm text-gray-500 bg-gray-300 cursor-not-allowed rounded-full"
             [class.bg-gray-300]="tabDisabled" disabled>
             Resueltos
         </button>
     </div>
 
-    <!-- Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card bg-white shadow-lg rounded-lg overflow-hidden">
-            <img class="w-full h-48 object-cover" src="https://via.placeholder.com/300" alt="Incident Image">
-            <div class="p-4">
-                <h3 class="font-semibold text-lg">Incidente 1</h3>
-                <p class="text-gray-600 mt-2">Descripción del incidente pendiente...</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-8">
+        <div *ngFor="let incident of incidents" [ngClass]="{
+          'bg-yellow-100': incident.status === 'Registrado', 
+          'bg-green-100': incident.status === 'En curso'
+        }" class="card shadow-none rounded-2xl flex justify-center flex-row flex-wrap items-center px-3 py-2 border-0">
+
+            <img class="w-16 h-16 rounded-full object-cover" [src]="incident.imageUrl" alt="Incident Image">
+
+            <div class="ml-4 flex-1">
+                <h3 class="font-semibold text-sm mb-0">{{ incident.title }}</h3>
+                <p class="text-gray-600 text-sm mb-0">{{ incident.description }}</p>
+            </div>
+
+            <div class="flex flex-col items-end">
+                <span class="text-sm font-semibold text-gray-500"> {{ incident.history }} </span>
+                <span class="text-sm font-semibold" [ngClass]="{
+            'text-yellow-500': incident.status === 'Registrado', 
+            'text-green-500': incident.status === 'En curso'
+          }">
+                    {{ incident.status }}
+                </span>
             </div>
         </div>
-
-        <div class="card bg-white shadow-lg rounded-lg overflow-hidden">
-            <img class="w-full h-48 object-cover" src="https://via.placeholder.com/300" alt="Incident Image">
-            <div class="p-4">
-                <h3 class="font-semibold text-lg">Incidente 2</h3>
-                <p class="text-gray-600 mt-2">Descripción del incidente resuelto...</p>
-            </div>
-        </div>
-
     </div>
+
 </div>
