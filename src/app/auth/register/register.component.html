@@ -28,8 +28,18 @@
                 <label for="">Usuario</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" autofocus placeholder="Introduzca su dirección de correo electrónico">
+                <input type="username" class="form-control" id="floatingInput" autofocus
+                  placeholder="Introduzca su nombre de usuario">
                 <label for="floatingInput" class="form-label">Ingresa aquí tu nombre de usuario</label>
+              </div>
+
+              <div>
+                <label for="">Correo electrónico</label>
+              </div>
+              <div class="col-12 form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" autofocus
+                  placeholder="Introduzca su dirección de correo electrónico">
+                <label for="floatingInput" class="form-label">Ingresa aquí tu correo electrónico</label>
               </div>
 
               <div>
@@ -38,27 +48,29 @@
               <div class="col-12 form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Ingrese su contraseña">
                 <label for="floatingPassword">Ingresa aquí tu contraseña</label>
+                <div class="col-auto">
+                  <span id="passwordHelpInline" class="form-text">
+                    Debe tener entre 8 y 20 caracteres.
+                  </span>
+                </div>
+
               </div>
 
-              <div class="mb-3 form-check">
-                <div class="col">
-                  <a href="#" class="rounded float-end text-decoration-none">¿Olvidaste tu Contraseña?</a>
-                </div>
+              <div class="col-12 form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Confirme su contraseña">
+                <label for="floatingPassword">Confirma tu contraseña</label>
               </div>
 
               <div class="d-grid gap-2 mt-5">
-                <button type="submit" class="btn btn-login">Iniciar sesión</button>
+                <button type="submit" class="btn btn-register">Crear cuenta</button>
               </div>
 
               <div class="row">
-
-                <div class="row">
-                  <div class="col">
-                    <p>¿No tienes una cuenta?</p>
-                  </div>
-                  <div class="col">
-                    <a href="/register" class="rounded float-start text-decoration-none">Registrate aquí</a>
-                  </div>
+                <div class="col">
+                  <p>¿Ya tienes una cuenta?</p>
+                </div>
+                <div class="col">
+                  <a href="#" class="rounded float-start text-decoration-none">Ingresar</a>
                 </div>
               </div>
             </form>
@@ -66,7 +78,7 @@
         </div>
 
         <!-- ***** PIE DE PAGINA DE LA TARJETA *****   -->
-        <div class="card-footer d-flex fixed-bottom  justify-content-end border-0">
+        <div class="card-footer d-flex fixed-bottom justify-content-end border-0">
           <div class="row align-items-center p-2 text-center">
             <div class="col">
               <a href="#" class="text-decoration-none">Términos y condiciones</a>
