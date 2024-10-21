@@ -1,24 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,600;0,700;1,100;1,400;1,600;1,700&family=Roboto:wght@100&display=swap');
-
 :root {
   --primary-color: #96C560;
-  --hover-bg-color: #65953A;
   --gris-10: #d3d3d3;
 }
 
 * {
-  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .poppins-bold {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;
-  color: var(--primary-color);
-  /* color: #96C560; */
+  /* color: var(--primary-color); */
+  color: #96C560;
   font-size: 32px;
+}
+
+.full-height {
+  height: 100vh;
+  /* Tomar toda la altura de la ventana */
 }
 
 .logo-login {
@@ -30,7 +32,18 @@
   /* border: 5px solid green; */
 }
 
-.bttn-login,
+.img {
+  /* border: 5px solid red; */
+  /* top: 184px;
+  left: 20px; */
+  width: auto;
+  height: auto;
+  /* background-image: url(../../../assets/logo-login.png); */
+  /* background-position: center center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .btn-register {
   --bs-btn-bg: #96C560;
   --bs-btn-color: #fff;
@@ -38,7 +51,3 @@
   --bs-btn-hover-bg: #65953A;
   height: 56px;
 }
-
-/* .screen {
-  background-color: #ffffff;
-} */
