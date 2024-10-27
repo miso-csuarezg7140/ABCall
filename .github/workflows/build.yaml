@@ -29,7 +29,7 @@ jobs:
     - name: Verificar build Angular
       run: |
         ng build --configuration production
-        if [ ! -d "dist/proyecto-angular" ]; then
+        if [ ! -d "dist/abcall" ]; then
           echo "Error: Build directory not found"
           exit 1
         fi
