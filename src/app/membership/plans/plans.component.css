@@ -1,0 +1,44 @@
+:root {
+  --primary-color: #96C560;
+  --color-10: #E1F2CE;
+  --color-20: #68953A;
+  --color-30: #355518;
+  --gris-10: #D3D3D3;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  /* color: var(--primary-color); */
+  color: #96C560;
+  font-size: 32px;
+}
+
+.nombre-plan {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--color-10); */
+}
+
+.nombre-plan-emprendedor {
+  background-color: #E1F2CE;
+}
+
+.nombre-plan-empresario {
+  background-color: #68953A;
+}
+
+.nombre-plan-empresario-plus {
+  background-color: #355518;
+}
+
+.btn {
+  --bs-btn-bg: #96C560;
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #65953A;
+  height: 56px;
+}
