@@ -5,18 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ToastrModule } from 'ngx-toastr';
-import { ModalModule } from 'ngx-bootstrap/modal'
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthModule } from './auth/auth.module';
-
+import { MembershipModule } from './membership/membership.module';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './home/header/header.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { PrincipalComponent } from './home/principal/principal.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-   ],
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    PrincipalComponent,
+    DashboardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,9 +35,10 @@ import { AuthModule } from './auth/auth.module';
     ToastrModule.forRoot(),
     NgxPaginationModule,
     BrowserAnimationsModule,
-    AuthModule
+    AuthModule,
+    MembershipModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
