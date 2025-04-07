@@ -41,4 +41,22 @@
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #65953A;
   height: 56px;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #65953A;
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.container {
+  padding: 20px;
+}
+
+.d-flex {
+  margin-bottom: 20px;
 }
