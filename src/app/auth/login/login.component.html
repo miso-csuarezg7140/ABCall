@@ -23,13 +23,14 @@
             </div>
 
             <!-- ***** FORMULARIO ***** -->
-            <form>
+            <form (ngSubmit)="onLogin()" #loginForm="ngForm">
               <div>
                 <label for="">Usuario</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" autofocus
-                  placeholder="Introduzca su dirección de correo electrónico">
+                <input type="email" class="form-control" id="floatingInput"
+                    [(ngModel)]="username" name="username" required autofocus
+                    placeholder="Introduzca su dirección de correo electrónico">
                 <label for="floatingInput" class="form-label">Ingresa aquí tu nombre de usuario</label>
               </div>
 
@@ -37,7 +38,9 @@
                 <label for="">Contraseña</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Ingrese su contraseña">
+                <input type="password" class="form-control" id="floatingPassword"
+                    [(ngModel)]="password" name="password" required
+                    placeholder="Ingrese su contraseña">
                 <label for="floatingPassword">Ingresa aquí tu contraseña</label>
               </div>
 
@@ -48,8 +51,7 @@
               </div>
 
               <div class="d-grid gap-2 mt-5">
-                <button type="button" class="btn btn-login" onclick="window.location.href='/plans';">Iniciar
-                  sesión</button>
+                <button type="submit" class="btn btn-login">Iniciar sesión</button>
               </div>
 
               <div class="row">

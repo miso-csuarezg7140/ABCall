@@ -18,6 +18,9 @@ import { FooterComponent } from './home/footer/footer.component';
 import { PrincipalComponent } from './home/principal/principal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +40,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     AuthModule,
     MembershipModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
