@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/loginService.service';
-import { login } from '../../interfaces/login';
+import { Login } from '../../interfaces/Login';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   // }
 
   onLogin() {
-    const credentials: login = {
+    const credentials: Login = {
       username: this.username,
       password: this.password,
     };
