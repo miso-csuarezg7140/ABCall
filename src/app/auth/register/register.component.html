@@ -23,47 +23,59 @@
             </div>
 
             <!-- ***** FORMULARIO ***** -->
-            <form>
+            <form #registerForm="ngForm" (ngSubmit)="registrar()">
               <div>
-                <label for="">Usuario</label>
+                <label for="username">Usuario</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="username" class="form-control" id="floatingInput" autofocus
-                  placeholder="Introduzca su nombre de usuario">
-                <label for="floatingInput" class="form-label">Ingresa aquí tu nombre de usuario</label>
+                <input type="text" class="form-control" id="documentNumber" name="documentNumber" [(ngModel)]="cliente.documentNumber"
+                  autofocus
+                  required
+                  placeholder="Introduce tu nombre de usuario">
+                <label for="username" class="form-label">Ingresa aquí tu nombre de usuario</label>
+              </div>
+
+              <div class="col-12 form-floating mb-3">
+                <input type="text" class="form-control" id="socialreason" name="socialreason" [(ngModel)]="cliente.socialReason"
+                  autofocus required placeholder="Introduce tu razón social">
+                <label for="email" class="form-label">Ingresa aquí tu razón social</label>
               </div>
 
               <div>
-                <label for="">Correo electrónico</label>
+                <label for="email">Correo electrónico</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" autofocus
+                <input type="email" class="form-control" id="email" name="email"[(ngModel)]="cliente.email"
+                  required
                   placeholder="Introduzca su dirección de correo electrónico">
-                <label for="floatingInput" class="form-label">Ingresa aquí tu correo electrónico</label>
+                <label for="email" class="form-label">Ingresa aquí tu correo electrónico</label>
               </div>
 
               <div>
-                <label for="">Contraseña</label>
+                <label for="password">Contraseña</label>
               </div>
               <div class="col-12 form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Ingrese su contraseña">
-                <label for="floatingPassword">Ingresa aquí tu contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="cliente.password"
+                  required minlength="6"
+                  placeholder="Ingrese su contraseña">
+                <label for="password">Ingresa aquí tu contraseña</label>
                 <div class="col-auto">
-                  <span id="passwordHelpInline" class="form-text">
-                    Debe tener entre 8 y 20 caracteres.
+                  <span class="form-text">
+                    Debe tener entre 8 y 10 caracteres.
                   </span>
                 </div>
 
               </div>
 
               <div class="col-12 form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Confirme su contraseña">
-                <label for="floatingPassword">Confirma tu contraseña</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword"
+                  required
+                  placeholder="Confirme su contraseña">
+                <label for="confirmPassword">Confirma tu contraseña</label>
               </div>
 
               <div class="d-grid gap-2 mt-5">
-                <button type="button" class="btn btn-register" onclick="window.location.href='/plans';">Crear
-                  cuenta</button>
+                <button type="submit" class="btn btn-register" [disabled]="registerForm.invalid">Crear cuenta</button>
               </div>
 
               <div class="row">
@@ -71,7 +83,8 @@
                   <p>¿Ya tienes una cuenta?</p>
                 </div>
                 <div class="col">
-                  <a href="/home" class="rounded float-start text-decoration-none">Ingresar</a>
+                  <a href="/home/login" class="rounded float-start text-decoration-none">Ingresar</a>
+                  <br>
                 </div>
               </div>
             </form>

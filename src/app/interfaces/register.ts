@@ -1,5 +1,6 @@
-export interface register {
-  username:string,
-  email:string,
-  password:string
+export interface Register {
+  documentNumber: string;
+  socialReason: string;
+  email: string;
+  password: string;
 }
