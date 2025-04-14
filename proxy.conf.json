@@ -2,6 +2,7 @@
   "/service": {
     "target": "http://34.144.226.68",
     "secure": false,
-    "changeOrigin": true
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }
