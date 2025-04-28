@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<main class="container my-4">
+
+  <!-- Gestión de Incidentes -->
+  <section class="mb-4">
+    <h2 class="h4 fw-semibold">Base de datos</h2>
+  </section>
+
+  <!-- Búsqueda -->
+  <div class="d-flex flex-wrap align-items-center mb-3 justify-content-between">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Buscar Incidente">
+      <button class="btn btn-outline-secondary" type="button">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Tabla de Incidentes -->
+  <div class="table-responsive mb-4">
+    <table class="table table-hover align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>#</th>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Asunto</th>
+          <th>Estado</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Jane Doe</td>
+          <td>janedoecorreo.com</td>
+          <td>Servicio lento</td>
+          <td>Solucionado</td>
+          <td><a href="/incidents/incident-detail" class="text-success text-decoration-none">Ver
+              detalle</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jane Doe</td>
+          <td>janedoecorreo.com</td>
+          <td>Cancelación</td>
+          <td>Solucionado</td>
+          <td><a href="incidents/incident-detail" class="text-success text-decoration-none">Ver
+              detalle</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Botón de Generar Reporte -->
+  <div class="mb-3">
+    <a href="/incidents" class="text-success">Atrás</a>
+  </div>
+
+</main>
+
+<app-footer></app-footer>

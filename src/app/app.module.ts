@@ -13,14 +13,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthModule } from './auth/auth.module';
 import { MembershipModule } from './membership/membership.module';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './home/header/header.component';
-import { FooterComponent } from './home/footer/footer.component';
-import { PrincipalComponent } from './home/principal/principal.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { HeaderComponent } from './home/header-home/header-home.component';
+import { HeaderComponent } from './incidents/header/header.component';
+import { FooterComponent } from './incidents/footer/footer.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { IncidentComponent } from './incidents/incident/incident.component';
+import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
+import { DbQueryComponent } from './incidents/db-query/db-query.component';
 import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-incidente.component';
 
 
@@ -30,8 +32,9 @@ import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    PrincipalComponent,
-    DashboardComponent,
+      IncidentComponent,
+      IncidentDetailComponent,
+      DbQueryComponent,
     RegistroIncidenteComponent,
   ],
   imports: [

@@ -1,0 +1,41 @@
+
+/* Estilos personalizados para los botones principales */
+.btn-principal {
+  background-color: #4A954A;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-principal:hover {
+  background-color: #3e7c3e;
+  color: white;
+}
+
+.btn-principal:focus {
+  box-shadow: 0 0 0 0.2rem rgba(74, 149, 74, 0.5);
+}
+
+.table-header-custom {
+  background-color: #BDE9BD;
+}
+
+
+@media (max-width: 576px) {
+
+  .table th,
+  .table td {
+    white-space: nowrap;
+    font-size: 0.9rem; /* Reducir ligeramente el tamaño de letra en móvil */
+  }
+
+@media (max-width: 576px) {
+  .card {
+    border: 1px solid #BDE9BD;
+    background-color: #f8fdf8;
+  }
+}
+}
