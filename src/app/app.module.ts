@@ -21,6 +21,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-incidente.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FooterComponent,
     PrincipalComponent,
     DashboardComponent,
+    RegistroIncidenteComponent,
   ],
   imports: [
     BrowserModule,
