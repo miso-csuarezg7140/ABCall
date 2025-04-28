@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<section class="container my-5">
+  <div class="mb-4">
+    <h2 class="h4 fw-bold">Detalle Incidente #1, Servicio lento</h2>
+    <div class="row g-2 mb-3">
+      <div class="col-12 col-md-6">
+        <strong>Fecha:</strong> <span>25/03/2025</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Empresa:</strong> <span>Empresa 1</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Usuario:</strong> <span>Jane Doe</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Estado:</strong> <span class="text-success">Abierto - En curso</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h3 class="h5 fw-bold">Descripción:</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur.
+    </p>
+  </div>
+
+  <div class="mb-4">
+    <h3 class="h5 fw-bold">Gestión:</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur.
+    </p>
+  </div>
+
+  <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+    <button type="button" class="btn btn-principal w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#modalAñadirGestion">
+      Añadir gestión
+    </button>
+
+    <button type="button" class="btn btn-principal w-100 w-md-auto">Enviar correo a usuario</button>
+  </div>
+
+  <div class="mb-3">
+    <a href="/incidents" class="text-success">Atrás</a>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAñadirGestion" tabindex="-1" aria-labelledby="modalAñadirGestionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="fw-semibold modal-title" id="modalAñadirGestionLabel">Añadir gestión</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="textareaGestion" class="form-label">Descripción de la gestión:</label>
+            <textarea class="form-control" id="textareaGestion" [(ngModel)]="nuevaGestion" name="nuevaGestion" rows="4"
+              placeholder="Describe la gestión realizada en éste caso..." required></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-principal" (click)="guardarGestion()">Añadir gestión</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
