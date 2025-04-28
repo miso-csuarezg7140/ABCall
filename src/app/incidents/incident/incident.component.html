@@ -1,0 +1,129 @@
+<app-header></app-header>
+<main class="container my-4">
+
+  <!-- Gestión de Incidentes -->
+  <section class="mb-4">
+    <h2 class="h4 fw-semibold">Gestión de Incidentes</h2>
+  </section>
+
+  <!-- Botón Registro Incidente y Búsqueda -->
+  <div class="d-flex flex-wrap gap-2 align-items-center mb-3 justify-content-between">
+    <button type="button" class="btn btn-principal me-3 mb-2 flex-grow-1 flex-md-grow-0">Registro incidente</button>
+    <a class="text-success" href="/incidents/db-query">Base de datos empresa</a>
+
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="Buscar Incidente">
+      <button class="btn btn-outline-secondary" type="button">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <form class="row g-3 align-items-end mb-4">
+    <div class="col-auto">
+      <label for="fechaInicial" class="form-label">Desde</label>
+      <input type="date" id="fechaInicial" class="form-control">
+    </div>
+    <div class="col-auto">
+      <label for="fechaFinal" class="form-label">Hasta</label>
+      <input type="date" id="fechaFinal" class="form-control">
+    </div>
+    <div class="col-auto">
+      <label class="form-label d-block">Estado</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="cerrado" checked>
+        <label class="form-check-label" for="cerrado">Cerrado</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="abierto" checked>
+        <label class="form-check-label" for="abierto">Abierto</label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-custom-green">Aplicar</button>
+    </div>
+  </form>
+
+  <!-- Tabla de Incidentes -->
+  <div class="table-responsive mb-4 d-done d-md-block">
+    <table class="table table-striped table-hover">
+      <thead class="table-success table-header-custom">
+        <tr>
+          <th>#</th>
+          <th>Fecha</th>
+          <th>Asunto</th>
+          <th>Usuario</th>
+          <th>Estado</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>15/03/2024</td>
+          <td>Cancelación de servicio</td>
+          <td>Jane Doe</td>
+          <td><a href="#" class="text-success text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalVerEstado">Ver estado</a></td>
+          <td><a href="/incidents/incident-detail" class="text-success text-decoration-none">Ver detalle</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>15/03/2024</td>
+          <td>Solicitud información</td>
+          <td>Jane Doe</td>
+          <td><a href="#" class="text-success text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalVerEstado">Ver estado</a></td>
+          <td><a href="/incidents/incident-detail" class="text-success text-decoration-none">Ver detalle</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vista cards para pantallas pequeñas -->
+  <div class="d-block d-md-none">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Corte de luz</h5>
+        <p class="card-text"><strong>Fecha:</strong> 26/04/2025</p>
+        <p class="card-text"><strong>Estado:</strong> Abierto</p>
+        <a href="#" class="btn btn-success btn-sm">Ver estado</a>
+      </div>
+    </div>
+    <!-- Otros registros como cards -->
+  </div>
+
+  <!-- Botón de Generar Reporte -->
+  <div class="text-center mb-3">
+    <button type="button" class="btn btn-principal flex-grow-1 flex-md-grow-0">Generar reporte</button>
+  </div>
+
+
+  <!-- Modal para Ver Estado -->
+  <div class="modal fade" id="modalVerEstado" tabindex="-1" aria-labelledby="modalVerEstadoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header" style="background-color: #47BA47; color: white;">
+          <h5 class="modal-title" id="modalVerEstadoLabel">Estado del Incidente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <p><strong>ID del Incidente:</strong> #12345</p>
+          <p><strong>Estado Actual:</strong> En Proceso</p>
+          <p><strong>Última actualización:</strong> 27/04/2025</p>
+          <!-- Aquí hacer que los datos sean dinámicos -->
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-principal" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+<app-footer></app-footer>

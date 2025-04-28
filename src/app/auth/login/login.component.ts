@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(credentials).subscribe(
       (res) => {
         console.log('Login exitoso', res);
-        this.router.navigate(['/plans']);
+        this.router.navigate(['/incidents']);
       },
       (err) => {
         console.error('Error al iniciar sesión', err);
