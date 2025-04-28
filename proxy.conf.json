@@ -1,6 +1,6 @@
 {
   "/service": {
-    "target": "https://abcall-gateway-bwh34xmh.uc.gateway.dev",
+    "target": "http://34.144.226.68",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://abcall-gateway-bwh34xmh.uc.gateway.dev/service',
+  production: false,
+  apiUrl: 'http://34.144.226.68/service',
 };
