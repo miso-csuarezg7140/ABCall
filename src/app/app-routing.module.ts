@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PrincipalComponent } from './home/principal/principal.component';
+import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-incidente.component';
 
 const routes: Routes = [
   { path: 'plans', component: PlansComponent },
@@ -23,8 +24,9 @@ const routes: Routes = [
       { path: 'principal', component: PrincipalComponent },
     ],
   },
-
+  { path: 'registro-incidente', component: RegistroIncidenteComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
+  
 ];
 
 @NgModule({
