@@ -4,15 +4,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PlansComponent } from './membership/plans/plans.component';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './home/header/header.component';
-import { FooterComponent } from './home/footer/footer.component';
-import { PrincipalComponent } from './home/principal/principal.component';
+import { HeaderComponent } from './incidents/header/header.component';
+import { FooterComponent } from './incidents/footer/footer.component';
+import { IncidentComponent } from './incidents/incident/incident.component';
+import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
+import { DbQueryComponent } from './incidents/db-query/db-query.component';
 
 const routes: Routes = [
   { path: 'plans', component: PlansComponent },
-
   { path: 'header', component: HeaderComponent },
   { path: 'footer', component: FooterComponent },
+  // { path: 'incident-detail', component: IncidentDetailComponent },
 
   {
     path: 'home',
@@ -20,10 +22,21 @@ const routes: Routes = [
     children: [
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'principal', component: PrincipalComponent },
     ],
   },
 
+  {
+    path: 'incidents',
+    component: HomeComponent,
+    children: [
+      { path: '', component: IncidentComponent },
+      // { path: 'incidents', component: PrincipalComponent },
+      // { path: 'incident', component: IncidentComponent },
+      { path: 'incident-detail', component: IncidentDetailComponent },
+      { path: 'db-query', component: DbQueryComponent },
+    ],
+  },
+  // { path: 'registro-incidente', component: RegistroIncidenteComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

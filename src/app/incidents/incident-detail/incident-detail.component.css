@@ -1,0 +1,26 @@
+/* Estilos personalizados para los botones principales */
+.btn-principal {
+  background-color: #4A954A;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-principal:hover {
+  background-color: #3e7c3e;
+  color: white;
+}
+
+.btn-principal:focus {
+  box-shadow: 0 0 0 0.2rem rgba(74, 149, 74, 0.5);
+}
+
+/* Ajustes responsivos */
+@media (min-width: 768px) {
+  .w-md-auto {
+    width: auto !important;
+  }
+}
