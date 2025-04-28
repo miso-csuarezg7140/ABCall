@@ -36,7 +36,7 @@ const routes: Routes = [
       { path: 'db-query', component: DbQueryComponent },
     ],
   },
-  { path: 'registro-incidente', component: RegistroIncidenteComponent },
+  // { path: 'registro-incidente', component: RegistroIncidenteComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
