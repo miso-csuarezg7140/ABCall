@@ -23,6 +23,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { IncidentComponent } from './incidents/incident/incident.component';
 import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
 import { DbQueryComponent } from './incidents/db-query/db-query.component';
+import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-incidente.component';
+
 
 @NgModule({
   declarations: [
@@ -32,8 +34,9 @@ import { DbQueryComponent } from './incidents/db-query/db-query.component';
     FooterComponent,
       IncidentComponent,
       IncidentDetailComponent,
-      DbQueryComponent
-   ],
+      DbQueryComponent,
+    RegistroIncidenteComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
