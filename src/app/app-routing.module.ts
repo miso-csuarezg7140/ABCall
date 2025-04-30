@@ -30,10 +30,9 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: IncidentComponent },
-      // { path: 'incidents', component: PrincipalComponent },
-      // { path: 'incident', component: IncidentComponent },
       { path: 'incident-detail', component: IncidentDetailComponent },
       { path: 'db-query', component: DbQueryComponent },
+      { path: 'detalle/:id', component: IncidentDetailComponent }
     ],
   },
   // { path: 'registro-incidente', component: RegistroIncidenteComponent },

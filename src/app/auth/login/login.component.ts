@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/loginService.service';
-import { Login } from '../../interfaces/Login';
+import { Login } from '../../interfaces/login';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -66,6 +66,8 @@ export class LoginComponent implements OnInit {
           alert('Usuario o contraseña incorrectos.');
         } else {
           alert('Ocurrió un error, inténtalo más tarde.');
+          // console.error('Error al iniciar sesión', err);
+
         }
       }
     );

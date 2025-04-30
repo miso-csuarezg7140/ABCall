@@ -1,7 +1,7 @@
-import { Login } from "./Login"
+import { Login } from './login';
 
 export interface responseLogin {
   statusCode: number;
   statusDescription: string;
-  data:Login[]
+  data: Login[];
 }
