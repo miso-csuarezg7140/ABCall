@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-custom-green">Aplicar</button>
+      <button type="submit" class="btn btn-principal">Aplicar</button>
     </div>
   </form>
 
@@ -59,21 +59,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
+        <tr *ngFor="let incident of incidents; let i = index">
+          <td>{{i + 1}}</td>
           <td>15/03/2024</td>
-          <td>Cancelación de servicio</td>
-          <td>Jane Doe</td>
-          <td><a href="#" class="text-success text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalVerEstado">Ver estado</a></td>
-          <td><a href="/incidents/incident-detail" class="text-success text-decoration-none">Ver detalle</a></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>15/03/2024</td>
-          <td>Solicitud información</td>
-          <td>Jane Doe</td>
-          <td><a href="#" class="text-success text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalVerEstado">Ver estado</a></td>
-          <td><a href="/incidents/incident-detail" class="text-success text-decoration-none">Ver detalle</a></td>
+          <td>{{incident.descripcion}}</td>
+          <td>{{incident.numDocumentoUsuario}}</td>
+          <td>
+            <button class="btn btn-link text-success p-0" (click)="seleccionarIncidente(incident)"
+              data-bs-toggle="modal"
+              data-bs-target="#modalVerEstado">
+              Ver estado
+            </button>
+          </td>
+          <!-- <td><a (click)="irADetalle(incident.id.toString())" class="text-success text-decoration-none">Ver detalle</a></td> -->
+           <td>
+            <button class="btn btn-link text-success p-0" (click)="irADetalle(incident.id.toString())">
+              Ver detalle
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -109,7 +112,7 @@
         </div>
 
         <div class="modal-body">
-          <p><strong>ID del Incidente:</strong> #12345</p>
+          <p><strong>ID del Incidente:</strong> #{{ incidenteSeleccionado?.id }}</p>
           <p><strong>Estado Actual:</strong> En Proceso</p>
           <p><strong>Última actualización:</strong> 27/04/2025</p>
           <!-- Aquí hacer que los datos sean dinámicos -->
