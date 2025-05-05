@@ -20,7 +20,7 @@ export class RegisterService {
 
   registerCliente(objeto: Register): Observable<responseRegister> {
     return this.http.post<responseRegister>(
-      `${this.baseUrl}/abcall/clientes/v1/register`,
+      `${this.baseUrl}/abcall/clientes/v1/registrar`,
       objeto
     );
   }

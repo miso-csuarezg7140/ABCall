@@ -10,10 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   cliente: Register = {
-    documentNumber: '',
-    socialReason: '',
-    email: '',
-    password: ''
+    numeroDocumento: '',
+    razonSocial: '',
+    correo: '',
+    contrasena: ''
   };
 
   confirmPassword: string = '';
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registrar() {
-    if (this.cliente.password !== this.confirmPassword) {
+    if (this.cliente.contrasena !== this.confirmPassword) {
       this.toastr.warning('Las contraseñas no coinciden');
       return;
     }
