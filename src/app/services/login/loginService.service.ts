@@ -17,7 +17,7 @@ export class LoginService {
 
   login(objeto:Login): Observable<responseLogin> {
     return this.http.post<responseLogin>(
-      `${environment.apiUrl}/abcall/clientes/v1/authenticate`,
+      `${environment.apiUrl}/abcall/clientes/v1/autenticar`,
       objeto
     );
   }

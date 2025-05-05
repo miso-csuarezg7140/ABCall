@@ -1,4 +1,4 @@
 export interface Login {
-  username: string;
-  password: string;
+  numeroDocumento: string;
+  contrasena: string;
 }
