@@ -66,6 +66,8 @@ export class LoginComponent implements OnInit {
           alert('Usuario o contraseña incorrectos.');
         } else {
           alert('Ocurrió un error, inténtalo más tarde.');
+          // console.error('Error al iniciar sesión', err);
+
         }
       }
     );

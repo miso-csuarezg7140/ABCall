@@ -1,44 +1,41 @@
 <app-header></app-header>
 
-<section class="container my-5">
+<section class="container my-5" *ngIf="detalleIncidente">
   <div class="mb-4">
-    <h2 class="h4 fw-bold">Detalle Incidente #1, Servicio lento</h2>
+    <h2 class="h4 fw-bold">Detalle Incidente # {{ detalleIncidente.id}}</h2>
+    <br>
     <div class="row g-2 mb-3">
       <div class="col-12 col-md-6">
-        <strong>Fecha:</strong> <span>25/03/2025</span>
+        <strong>Fecha: </strong> <span>{{ detalleIncidente.fechaCreacion | date: 'dd/MM/yyyy HH:MM' }}</span>
       </div>
       <div class="col-12 col-md-6">
-        <strong>Empresa:</strong> <span>Empresa 1</span>
+        <strong>Documento cLiente: </strong> <span>{{ detalleIncidente.numDocumentoCliente }}</span>
       </div>
       <div class="col-12 col-md-6">
-        <strong>Usuario:</strong> <span>Jane Doe</span>
+        <strong>Documento usuario: </strong> <span>{{ detalleIncidente.tipoDocumentoUsuario}} {{ detalleIncidente.numDocumentoUsuario }}</span>
       </div>
       <div class="col-12 col-md-6">
-        <strong>Estado:</strong> <span class="text-success">Abierto - En curso</span>
+        <strong>Estado: </strong> <span class="text-success">{{ detalleIncidente.estado }}</span>
       </div>
     </div>
   </div>
 
   <div class="mb-4">
     <h3 class="h5 fw-bold">Descripción:</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur.
-    </p>
+    <p>{{ detalleIncidente.descripcion }}</p>
   </div>
 
   <div class="mb-4">
     <h3 class="h5 fw-bold">Gestión:</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur.
+    <p *ngIf="detalleIncidente.fechaModificacion; else sinModificacion">
+      Última modificación: {{ detalleIncidente.fechaModificacion | date: 'dd/MM/yyyy HH:MM' }}
     </p>
+    <ng-template #sinModificacion>
+      <p>No se han registrado modificaciones aún.</p>
+    </ng-template>
   </div>
 
+  <!-- Botones -->
   <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
     <button type="button" class="btn btn-principal w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#modalAñadirGestion">
       Añadir gestión
@@ -48,7 +45,7 @@
   </div>
 
   <div class="mb-3">
-    <a href="/incidents" class="text-success">Atrás</a>
+    <a [routerLink]="['/incidents']" class="text-success">Atrás</a>
   </div>
 </section>
 
