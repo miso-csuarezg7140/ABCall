@@ -1,12 +1,17 @@
 <app-header></app-header>
 
+<div *ngIf="alertaVisible" class="alert alert-success alert-dismissible fade show m-3" role="alert">
+  Gestión añadida correctamente.
+  <button type="button" class="btn-close" (click)="cerrarAlerta()" aria-label="Close"></button>
+</div>
+
 <section class="container my-5" *ngIf="detalleIncidente">
   <div class="mb-4">
     <h2 class="h4 fw-bold">Detalle Incidente # {{ detalleIncidente.id}}</h2>
     <br>
     <div class="row g-2 mb-3">
       <div class="col-12 col-md-6">
-        <strong>Fecha: </strong> <span>{{ detalleIncidente.fechaCreacion | date: 'dd/MM/yyyy HH:MM' }}</span>
+        <strong>Fecha: </strong> <span>{{ detalleIncidente.fechaCreacion | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
       <div class="col-12 col-md-6">
         <strong>Documento cLiente: </strong> <span>{{ detalleIncidente.numDocumentoCliente }}</span>
@@ -26,13 +31,24 @@
   </div>
 
   <div class="mb-4">
-    <h3 class="h5 fw-bold">Gestión:</h3>
-    <p *ngIf="detalleIncidente.fechaModificacion; else sinModificacion">
-      Última modificación: {{ detalleIncidente.fechaModificacion | date: 'dd/MM/yyyy HH:MM' }}
+    <h5 class="h5 fw-normal ">Estado de la solución:</h5>
+    <p *ngIf="detalleIncidente.solucionado; esle sinSolucion">
+      El incidente ha sido resuelto por <strong>{{ detalleIncidente.solucionadoPor }}</strong> el <span>{{ detalleIncidente.fechaSolucion | date: 'dd/MM/yyyy HH:mm' }}</span>.
     </p>
-    <ng-template #sinModificacion>
-      <p>No se han registrado modificaciones aún.</p>
+
+    <ng-template #sinSolucion>
+      <p>Este incidente aún no ha sido solucionado.</p>
     </ng-template>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="h5 fw-normal">Creado por:</h5>
+    <p>{{ detalleIncidente.creadoPor }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="h5 fw-normal">Modificado por:</h5>
+    <p>{{ detalleIncidente.modificadoPor || 'No ha sido modificado' }}</p>
   </div>
 
   <!-- Botones -->
@@ -71,8 +87,16 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-principal" (click)="guardarGestion()">Añadir gestión</button>
+        <button type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal">
+          Cancelar</button>
+        <button type="button"
+          class="btn btn-principal"
+          [disabled]="!nuevaGestion.trim()"
+          (click)="guardarGestionAIncidente()"
+          data-bs-dismiss="modal">
+          Añadir gestión</button>
       </div>
 
     </div>
