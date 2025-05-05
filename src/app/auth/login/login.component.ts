@@ -10,8 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
+  numeroDocumento = '';
+  contrasena = '';
 
   constructor(
     private loginService: LoginService,
@@ -19,40 +19,10 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  // onLogin() {
-  //   const credentials: login = {
-  //     username: this.username,
-  //     password: this.password,
-  //   };
-
-  //   this.loginService.login(credentials).subscribe(
-  //     (res) => {
-  //       console.log('Login exitoso', res);
-  //       this.router.navigate(['/plans']);
-  //     },
-  //     (err) => {
-  //       console.error('Error al iniciar sesión', err);
-  //       if (err.status === 401) {
-  //         this.snackBar.open('Usuario o contraseña incorrectos.', 'Cerrar', {
-  //           duration: 3000,
-  //         });
-  //       } else {
-  //         this.snackBar.open(
-  //           'Ocurrió un error, inténtalo más tarde.',
-  //           'Cerrar',
-  //           {
-  //             duration: 3000,
-  //           }
-  //         );
-  //       }
-  //     }
-  //   );
-  // }
-
   onLogin() {
     const credentials: Login = {
-      username: this.username,
-      password: this.password,
+      numeroDocumento: this.numeroDocumento,
+      contrasena: this.contrasena,
     };
 
     this.loginService.login(credentials).subscribe(
