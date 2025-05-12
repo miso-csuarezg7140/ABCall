@@ -1,6 +1,6 @@
 export interface Register {
-  documentNumber: string;
-  socialReason: string;
-  email: string;
-  password: string;
+  numeroDocumento: string;
+  razonSocial: string;
+  correo: string;
+  contrasena: string;
 }
