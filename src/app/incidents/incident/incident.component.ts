@@ -15,8 +15,10 @@ declare var bootstrap: any;
   styleUrls: ['./incident.component.css'],
 })
 export class IncidentComponent implements OnInit {
-  // incidentes: incidente[] = [];
   incidentes: any[] = []; //Modificado
+  paginacion: any = {
+  };
+
   incidenteSeleccionado: any = null;
   clientes: Cliente[] = [];
   nuevoIncidente = {
@@ -24,6 +26,20 @@ export class IncidentComponent implements OnInit {
     numDocumentoUsuario: 51287946, // puedes obtenerlo de un usuario logueado si aplica
     numDocumentoCliente: null,
     descripcion: '',
+  };
+
+  // Filtro inicial para la consulta
+  filtro = {
+    tipoDocUsuario: '1',
+    numeroDocUsuario: '51287946',
+    numeroDocCliente: '1010101010',
+    estado: 'ACTIVO',
+    fechaInicio: '2025/01/01',
+    fechaFin: '2025/06/30',
+    pagina: "1",
+    tamanioPagina: 5,
+    descargar: false,
+    // descripcion: ""
   };
 
   constructor(
@@ -68,19 +84,38 @@ export class IncidentComponent implements OnInit {
   }
 
   obtenerIncidentes(): void {
-    const tipoDocUsuario = 'CC';
-    const numeroDocUsuario = 51287946;
+    this.incidentService.obtenerIncidentes(this.filtro).subscribe({
+      next: (response) => {
+        if (response.statusCode === 200) {
+          console.log('Respuesta del servidor:', response.data.data);
+          this.incidentes = response.data.data;
+          this.paginacion = response.data.paginacion;
+          if (response.data.data.length > 0) {
+            console.log('Datos correctamente recibidos y asignados.');
+          } else {
+            console.warn('La respuesta está vacía.');
+          }
 
-    this.incidentService
-      .obtenerIncidentes(tipoDocUsuario, numeroDocUsuario)
-      .subscribe({
-        next: (resp) => {
-          this.incidentes = resp.data;
-        },
-        error: (err) => {
-          console.error('Error al obtener los incidentes', err);
-        },
-      });
+          this.incidentes = response.data.data;
+          this.paginacion = response.data.paginacion;
+          console.log('Incidentes asignados:', this.incidentes);
+        } else {
+          console.error(
+            'Error al consultar incidentes:',
+            response.statusDescription
+          );
+        }
+      },
+      error: (err) => {
+        console.error('Error en la petición al obtener los incidentes', err);
+      },
+    });
+  }
+
+  // Método para cambiar de página
+  cambiarPagina(pagina: number): void {
+    this.filtro.pagina = pagina.toString();
+    this.obtenerIncidentes();
   }
 
   obtenerClientes(): void {
@@ -109,7 +144,9 @@ export class IncidentComponent implements OnInit {
   }
 
   abrirModalRegistro(): void {
-    const modal = new bootstrap.Modal(document.getElementById('modalRegistroIncidente')!);
+    const modal = new bootstrap.Modal(
+      document.getElementById('modalRegistroIncidente')!
+    );
     modal.show();
   }
 
