@@ -1,38 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { incidente } from '../models/incident.model';
+import { environment } from '../../environments/environment';
 
-const API_URL = 'https://abcall-gateway-bwh34xmh.uc.gateway.dev/service/abcall';
 @Injectable({
   providedIn: 'root',
 })
 export class IncidentService {
+  private apiUrl = `${environment.apiUrl}/abcall/incidentes/v1`
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
   constructor(private http: HttpClient) {}
 
   crearIncidente(incidente: any): Observable<any> {
-    return this.http.post(`${API_URL}/incidentes/v1/crear`, incidente);
+    return this.http.post(`${this.apiUrl}/crear`, incidente, { headers: this.headers });
   }
 
   obtenerResumen(): Observable<any> {
-    return this.http.get(`${API_URL}/resumen`);
+    return this.http.get(`${this.apiUrl}/resumen`, { headers: this.headers });
   }
 
-  obtenerIncidentes(
-    tipoDocUsuario: string,
-    numeroDocUsuario: number
-  ): Observable<{ data: incidente[] }> {
-    const url = `${API_URL}/incidentes/v1/consultar?tipoDocUsuario=${tipoDocUsuario}&numeroDocUsuario=${numeroDocUsuario}`;
-    return this.http.get<{ data: incidente[] }>(url);
+  obtenerIncidentes(filtro: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/consultar`,
+      filtro,
+      { headers: this.headers }
+    );
   }
 
   obtenerDetalleIncidente(id: number): Observable<any> {
     return this.http.get<any>(
-      `${API_URL}/incidentes/v1/consultarDetalle?idIncidente=${id}`
+      `${this.apiUrl}/consultarDetalle?idIncidente=${id}`,
+      { headers: this.headers }
     );
   }
 
   obtenerTodosLosClientes(): Observable<any> {
-    return this.http.get(`${API_URL}/clientes/v1/listar`);
+    return this.http.get(`${environment}/clientes/v1/listar`);
   }
 }
