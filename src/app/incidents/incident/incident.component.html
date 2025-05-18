@@ -12,7 +12,7 @@
     <a class="text-success" href="/incidents/db-query">Base de datos empresa</a>
 
     <div class="input-group mb-2">
-      <input type="text" class="form-control" placeholder="Buscar Incidente">
+      <!-- <input type="text" class="form-control" placeholder="Buscar Incidente" [(ngModel)]="filtro.descripcion" (keyup)="obtenerIncidentes()"> -->
       <button class="btn btn-outline-secondary" type="button">
         <i class="bi bi-search"></i>
       </button>
@@ -21,14 +21,14 @@
 
   <!-- Filtros -->
   <form class="row g-3 align-items-end mb-4">
-    <!-- <div class="col-auto">
+    <div class="col-auto">
       <label for="fechaInicial" class="form-label">Desde</label>
       <input type="date" id="fechaInicial" class="form-control">
     </div>
     <div class="col-auto">
       <label for="fechaFinal" class="form-label">Hasta</label>
       <input type="date" id="fechaFinal" class="form-control">
-    </div> -->
+    </div>
     <div class="col-auto">
       <label class="form-label d-block">Estado</label>
       <div class="form-check form-check-inline">
@@ -46,34 +46,38 @@
   </form>
 
   <!-- Tabla de Incidentes -->
+  <p *ngIf="incidentes.length === 0">No se encontraron incidentes.</p>
   <div class="table-responsive mb-4 d-done d-md-block">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" *ngIf="incidentes.length > 0">
       <thead class="table-success table-header-custom">
         <tr>
           <!-- <th>#</th> -->
-          <th>id</th>
-          <th>Tipo</th>
-          <th>Usuario</th>
-          <th>Cliente</th>
-          <th>Asunto</th>
+          <th>ID</th>
+          <th>Tipo Documento Usuario</th>
+          <th>Documento Usuario</th>
+          <th>Documento Cliente</th>
+          <th>Descripción</th>
           <th>Estado</th>
-          <th>Detalle</th>
+          <th>Fecha de Creación</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let incidente of incidentes; let i = index">
+        <tr *ngFor="let incidente of incidentes">
           <!-- <td>{{i + 1}}</td> -->
           <td>{{ incidente.id }}</td>
           <td>{{ incidente.tipoDocumentoUsuario }}</td>
           <td>{{ incidente.numDocumentoUsuario }}</td>
           <td>{{ incidente.numDocumentoCliente }}</td>
           <td>{{ incidente.descripcion }}</td>
-          <td>
+          <td>{{ incidente.estado }}</td>
+          <td>{{ incidente.fechaCreacion }}</td>
+          <!-- <td>
             <button class="btn btn-link text-success p-0" (click)="abrirModalVerEstado(incidente)">
               Ver estado
             </button>
-          </td>
-           <td>
+          </td> -->
+          <td>
             <button class="btn btn-link text-success p-0" (click)="irADetalle(incidente.id.toString())">
               Ver detalle
             </button>
@@ -81,6 +85,35 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Paginación -->
+  <div *ngIf="paginacion">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="paginacion.pagina == 1">
+          <button class="page-link btn-paginacion"
+           (click)="cambiarPagina(paginacion.pagina - 1)">
+           Anterior
+          </button>
+        </li>
+
+        <li class="page-item" *ngFor="let page of [].constructor(paginacion.totalPaginas); let i = index">
+          <button class="page-link"
+            [class.active]="paginacion.pagina === i + 1"
+            (click)="cambiarPagina(i + 1)">
+            {{ i + 1 }}
+          </button>
+        </li>
+
+        <li class="page-item" [class.disabled]="paginacion.pagina == paginacion.totalPaginas">
+          <button class="page-link btn-paginacion"
+            (click)="cambiarPagina(paginacion.pagina + 1)">
+            Siguiente
+          </button>
+        </li>
+      </ul>
+    </nav>
   </div>
 
   <!-- Vista cards para pantallas pequeñas -->
@@ -93,7 +126,6 @@
         <a href="#" class="btn btn-success btn-sm">Ver estado</a>
       </div>
     </div>
-    <!-- Otros registros como cards -->
   </div>
 
   <!-- Botón de Generar Reporte -->

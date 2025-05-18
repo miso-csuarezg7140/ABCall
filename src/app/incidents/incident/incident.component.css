@@ -19,8 +19,31 @@
   box-shadow: 0 0 0 0.2rem rgba(74, 149, 74, 0.5);
 }
 
+.btn-paginacion {
+  background-color: #4A954A;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-paginacion:hover {
+  background-color: #3e7c3e;
+  color: white;
+}
+
 .table-header-custom {
   background-color: #BDE9BD;
+}
+
+.container {
+  max-width: 90%;
+}
+
+.table {
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  justify-content: center;
 }
 
 
