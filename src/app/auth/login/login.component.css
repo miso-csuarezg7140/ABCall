@@ -50,3 +50,14 @@
   --bs-btn-hover-bg:#65953A;
   height: 56px;
 }
+
+
+.btn-principal {
+  background-color: #47BA47;
+  color: white;
+  border: none;
+}
+
+.btn-principal:hover {
+  background-color: #3da33d;
+}

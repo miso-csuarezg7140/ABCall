@@ -1,3 +1,12 @@
+/* Cambia el color cuando el input esté enfocado */
+select:focus~label {
+  color: #47BA47;
+}
+
+select:not([value=""])~label {
+  color: #47BA47;
+}
+
 .bg-header-custom {
   background-color: #47BA47;
   color: white;
