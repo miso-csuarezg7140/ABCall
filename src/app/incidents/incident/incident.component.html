@@ -53,7 +53,7 @@
         <tr>
           <!-- <th>#</th> -->
           <th>ID</th>
-          <th>Tipo Documento Usuario</th>
+          <th>Tipo Doc. Usuario</th>
           <th>Documento Usuario</th>
           <th>Documento Cliente</th>
           <th>Descripción</th>
@@ -71,7 +71,7 @@
           <td>{{ incidente.numDocumentoCliente }}</td>
           <td>{{ incidente.descripcion }}</td>
           <td>{{ incidente.estado }}</td>
-          <td>{{ incidente.fechaCreacion }}</td>
+          <td>{{ incidente.fechaCreacion | date:'short' }}</td>
           <!-- <td>
             <button class="btn btn-link text-success p-0" (click)="abrirModalVerEstado(incidente)">
               Ver estado
@@ -118,12 +118,12 @@
 
   <!-- Vista cards para pantallas pequeñas -->
   <div class="d-block d-md-none">
-    <div class="card mb-3">
+    <div class="card mb-3" *ngFor="let incidente of incidentes">
       <div class="card-body">
-        <h5 class="card-title">Corte de luz</h5>
-        <p class="card-text"><strong>Fecha:</strong> 26/04/2025</p>
-        <p class="card-text"><strong>Estado:</strong> Abierto</p>
-        <a href="#" class="btn btn-success btn-sm">Ver estado</a>
+        <h5 class="card-title">{{ incidente.descripcion }}</h5>
+        <p class="card-text"><strong>Fecha:</strong> {{ incidente.fechaCreacion | date:'short' }}</p>
+        <p class="card-text"><strong>Estado:</strong> {{ incidente.estado }}</p>
+        <button class="btn btn-success btn-sm" (click)="irADetalle(incidente.id.toString())">Ver detalle</button>
       </div>
     </div>
   </div>
@@ -146,10 +146,27 @@
 
         <div class="modal-body">
           <form>
+            <div class="form-group position-relative">
+              <label for="tipoDocumentoUsuario" class="form-label">Tipo de Documento del Usuario</label>
+              <select class="form-control" id="tipoDocumentoUsuario" [(ngModel)]="nuevoIncidente.tipoDocumentoUsuario"
+              name="tipoDocumentoUsuario">
+              <option value="1">Cédula de Ciudadanía</option>
+              <option value="2">Cédula de Extranjería</option>
+              <option value="3">Pasaporte</option>
+              <option value="4">Carnet diplomático</option>
+              <option value="5">Permiso especial de permanencia</option>
+              <option value="6">Número único de identificación personal</option>
+            </select>
+            </div>
             <div class="mb-3">
-              <label for="cliente" class="form-label">Número de documento del Usuario</label>
-              <input type="number" class="form-control" id="cliente" [(ngModel)]="nuevoIncidente.numDocumentoCliente"
-                name="cliente">
+              <label for="numDocumentoUsuario" class="form-label">Número de Documento del Usuario</label>
+              <input type="number" class="form-control" id="numDocumentoUsuario" [(ngModel)]="nuevoIncidente.numDocumentoUsuario"
+                name="numDocumentoUsuario">
+            </div>
+            <div class="mb-3">
+              <label for="numDocumentoCliente" class="form-label">Número de Documento del Cliente</label>
+              <input type="number" class="form-control" id="numDocumentoCliente" [(ngModel)]="nuevoIncidente.numDocumentoCliente"
+                name="numDocumentoCliente">
             </div>
             <div class="mb-3">
               <label for="descripcion" class="form-label">Descripción del incidente</label>

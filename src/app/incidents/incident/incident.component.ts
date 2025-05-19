@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
-import { Cliente } from '../../models/cliente.models'
+import { Cliente } from '../../models/cliente.models';
+import { AuthService } from '../../services/auth/auth.service'
 
 declare var bootstrap: any;
 
@@ -16,19 +17,30 @@ declare var bootstrap: any;
 })
 export class IncidentComponent implements OnInit {
   incidentes: any[] = []; //Modificado
-  paginacion: any = {
-  };
+  paginacion: any = {};
 
   incidenteSeleccionado: any = null;
   clientes: Cliente[] = [];
   nuevoIncidente = {
-    tipoDocumentoUsuario: 'CC',
-    numDocumentoUsuario: 51287946, // puedes obtenerlo de un usuario logueado si aplica
+    tipoDocumentoUsuario: '',
+    numDocumentoUsuario: null,
     numDocumentoCliente: null,
     descripcion: '',
   };
 
-  // Filtro inicial para la consulta
+  // Filtro inicial (vacío, se llenará dinámicamente)
+  // filtro: any = {
+  //   tipoDocUsuario: '',
+  //   numeroDocUsuario: '',
+  //   numeroDocCliente: '',
+  //   estado: '',
+  //   fechaInicio: '',
+  //   fechaFin: '',
+  //   pagina: '1',
+  //   tamanioPagina: 5,
+  //   descargar: false,
+  // };
+
   filtro = {
     tipoDocUsuario: '1',
     numeroDocUsuario: '51287946',
@@ -36,11 +48,13 @@ export class IncidentComponent implements OnInit {
     estado: 'ACTIVO',
     fechaInicio: '2025/01/01',
     fechaFin: '2025/06/30',
-    pagina: "1",
+    pagina: '1',
     tamanioPagina: 5,
     descargar: false,
     // descripcion: ""
   };
+
+  listaIncidentes: any[] = [];
 
   constructor(
     private incidentService: IncidentService,
@@ -50,8 +64,10 @@ export class IncidentComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerIncidentes();
     this.obtenerClientes();
+    this.cargarFiltroIncidentes();
   }
 
+  //METODOS
   crearIncidente(): void {
     if (
       !this.nuevoIncidente.numDocumentoCliente ||
@@ -83,6 +99,40 @@ export class IncidentComponent implements OnInit {
     this.nuevoIncidente.descripcion = '';
   }
 
+  cargarFiltroIncidentes() {
+    const filtroInicial = {
+      tipoDocUsuario: '',
+      numeroDocUsuario: '',
+      numeroDocCliente: '',
+      estado: '',
+      fechaInicio: '',
+      fechaFin: '',
+      pagina: 1,
+      tamanioPagina: 5,
+      descargar: false,
+    };
+
+    this.incidentService.consultarIncidentesFiltrados(filtroInicial).subscribe({
+      next: (data) => {
+        console.log('Datos del filtro obtenidos del backend:', data);
+        // Asignación de valores...
+        this.listarIncidentes();
+      },
+      error: (err) => console.error('Error al cargar el filtro inicial', err),
+    });
+  }
+
+  listarIncidentes() {
+    this.incidentService.obtenerIncidentes(this.filtro).subscribe({
+      next: (response) => {
+        console.log('Incidentes obtenidos:', response);
+        this.incidentes = response.data;
+        this.paginacion = response.data.paginacion;
+      },
+      error: (err) => console.error('Error al listar incidentes', err),
+    });
+  }
+
   obtenerIncidentes(): void {
     this.incidentService.obtenerIncidentes(this.filtro).subscribe({
       next: (response) => {
@@ -112,7 +162,6 @@ export class IncidentComponent implements OnInit {
     });
   }
 
-  // Método para cambiar de página
   cambiarPagina(pagina: number): void {
     this.filtro.pagina = pagina.toString();
     this.obtenerIncidentes();
