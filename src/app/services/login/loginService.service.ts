@@ -1,25 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { appsettings } from '../../settings/appsettings';
-import { Login } from '../../interfaces/login';
 import { Observable } from 'rxjs';
-import { responseLogin } from '../../interfaces/responseLogin';
 import { environment } from '../../../environments/environment';
+import { Login } from '../../interfaces/login';
+import { responseLogin } from '../../interfaces/responseLogin';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
   private http = inject(HttpClient);
-  private baseUrl:string = appsettings.apiUrl
+  private baseUrl: string = `${environment.apiUrl}/abcall`;
 
-  constructor() { }
+  constructor() {}
 
-  login(objeto:Login): Observable<responseLogin> {
+  // Cliente
+  loginCliente(data: Login): Observable<responseLogin> {
     return this.http.post<responseLogin>(
-      `${environment.apiUrl}/abcall/clientes/v1/autenticar`,
-      objeto
+      `${this.baseUrl}/clientes/v1/autenticar`,
+      data
     );
   }
 
+  // Agente
+  loginAgente(data: {
+    tipoDocumento: string;
+    numeroDocumento: string;
+    contrasena: string;
+  }): Observable<responseLogin> {
+    return this.http.post<responseLogin>(
+      `${this.baseUrl}/agentes/v1/autenticar`,
+      data
+    );
+  }
 }

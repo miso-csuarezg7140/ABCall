@@ -7,7 +7,7 @@
         <img src="../../../assets/logo-login.png" class="img-fluid img" width="30" alt="...">
       </div>
 
-      <!-- ***** COLUMNA DERECHA CON EL FORMUALRIO ***** -->
+      <!-- ***** COLUMNA DERECHA CON EL FORMULARIO ***** -->
       <div class="col-8">
         <div class="d-flex flex-column align-items-center">
           <div class="card-body col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -24,53 +24,77 @@
 
             <!-- ***** FORMULARIO ***** -->
             <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-              <div>
-                <label for="">Usuario</label>
-              </div>
-              <div class="col-12 form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput"
-                    [(ngModel)]="numeroDocumento" name="numeroDocumento" required autofocus
-                    placeholder="Introduzca su dirección de correo electrónico">
-                <label for="floatingInput" class="form-label">Ingresa aquí tu número de documento</label>
-              </div>
-
-              <div>
-                <label for="">Contraseña</label>
-              </div>
-              <div class="col-12 form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword"
-                    [(ngModel)]="contrasena" name="contrasena" required
-                    placeholder="Ingrese su contraseña">
-                <label for="floatingPassword">Ingresa aquí tu contraseña</label>
+              <!-- Selector de tipo de usuario -->
+              <div class="mb-3">
+                <label for="tipoUsuario" class="form-label">Tipo de usuario</label>
+                <select class="form-select" id="tipoUsuario" [(ngModel)]="tipoUsuario" name="tipoUsuario">
+                  <option value="cliente">Cliente</option>
+                  <option value="agente">Agente</option>
+                </select>
               </div>
 
-              <div class="mb-3 form-check">
-                <div class="col">
-                  <a href="#" class="text-success rounded float-end text-decoration-none">¿Olvidaste tu Contraseña?</a>
-                </div>
+              <!-- Campo de tipo de documento (solo para agentes) -->
+              <div *ngIf="tipoUsuario === 'agente'" class="mb-3">
+                <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                <select class="form-select" id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento">
+                  <option value="1">Cédula de Ciudadanía</option>
+                  <option value="2">Cédula de Extranjería</option>
+                  <option value="3">Pasaporte</option>
+                  <option value="4">Carnet diplomático</option>
+                  <option value="5">Permiso especial de permanencia</option>
+                  <option value="6">Número único de identificación personal</option>
+                </select>
               </div>
 
-              <div class="d-grid gap-2 mt-5">
-                <button type="submit" class="btn btn-login">Iniciar sesión</button>
+              <!-- Número de documento -->
+              <div class="mb-3">
+                <label for="numeroDocumento" class="form-label">Número de Documento</label>
+                <input type="text" class="form-control" id="numeroDocumento" [(ngModel)]="numeroDocumento" name="numeroDocumento"
+                  required>
               </div>
 
-              <div class="row">
+              <!-- Contraseña -->
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasena" [(ngModel)]="contrasena" name="contrasena" required>
+              </div>
 
-                <div class="row">
-                  <div class="col">
-                    <p>¿No tienes una cuenta?</p>
-                  </div>
-                  <div class="col">
-                    <a href="/home/register" class="text-success rounded float-start text-decoration-none">Registrate aquí</a>
-                  </div>
-                </div>
+              <!-- Botón de enviar -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
               </div>
             </form>
+
+
           </div>
         </div>
-
-
       </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Cliente en Construcción -->
+<div class="modal fade" id="modalClienteConstruccion" tabindex="-1" aria-labelledby="modalClienteConstruccionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 shadow-sm border-0">
+
+      <div class="modal-header text-white" style="background-color: #47BA47;">
+        <h5 class="modal-title" id="modalClienteConstruccionLabel">Funcionalidad en Construcción</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body px-4 py-3">
+        <p class="mb-2">Esta funcionalidad aún se encuentra en desarrollo.</p>
+        <p class="mb-2">Próximamente podrá acceder al portal de clientes desde esta opción.</p>
+        <p class="mb-0">Agradecemos su comprensión mientras continuamos mejorando la plataforma.</p>
+      </div>
+
+      <div class="modal-footer border-0 px-4 py-2">
+        <button type="button" class="btn btn-principal" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+
     </div>
   </div>
 </div>
