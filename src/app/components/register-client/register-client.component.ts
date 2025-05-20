@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../../interfaces/register'
-import { RegisterService } from '../../services/register/registerService.service';
+import { RegisterService } from '../../services/register-client/register-client.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register-client.component.html',
+  styleUrls: ['./register-client.component.css']
 })
 export class RegisterComponent implements OnInit {
   cliente: Register = {
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.registerService.registerCliente(this.cliente).subscribe({
+    this.registerService.registerClient(this.cliente).subscribe({
       next: (response: { statusCode: number; statusDescription: any; }) => {
         if (response.statusCode === 200) {
           this.toastr.success('Registro exitoso');

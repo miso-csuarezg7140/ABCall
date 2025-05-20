@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IncidentService } from '../../services/incident.service';
+import { IncidentService } from '../../services/incident/incident.service';
 import { incidente } from '../../models/incident.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';

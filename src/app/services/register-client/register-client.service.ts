@@ -10,7 +10,7 @@ import { responseRegister } from '../../interfaces/responseRegister';
   providedIn: 'root',
 })
 export class RegisterService {
-  // registerCliente(cliente: Register) {
+  // registerClient(cliente: Register) {
   //   throw new Error('Method not implemented.');
   // }
   private http = inject(HttpClient);
@@ -18,7 +18,7 @@ export class RegisterService {
 
   constructor() {}
 
-  registerCliente(objeto: Register): Observable<responseRegister> {
+  registerClient(objeto: Register): Observable<responseRegister> {
     return this.http.post<responseRegister>(
       `${this.baseUrl}/abcall/clientes/v1/registrar`,
       objeto
