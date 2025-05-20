@@ -11,7 +11,7 @@ export class IncidentService {
   private apiUrl = `${environment.apiUrl}/abcall/incidentes/v1`;
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
   });
 
   constructor(private http: HttpClient) {}
@@ -41,7 +41,26 @@ export class IncidentService {
       tamanioPagina: 5,
       descargar: false,
     };
+
+    // Mezcla el filtro inicial con los valores recibidos
     const body = { ...defaultFilter, ...filtro };
+
+    // Eliminar claves con valores vacíos, nulos o no numéricos para evitar errores en el backend
+    Object.keys(body).forEach((key) => {
+      if (body[key] === '' || body[key] === null || body[key] === undefined) {
+        delete body[key];
+      }
+    });
+
+    // Validar si las fechas son válidas, si no, eliminarlas
+    if (body.fechaInicio && isNaN(Date.parse(body.fechaInicio))) {
+      delete body.fechaInicio;
+    }
+    if (body.fechaFin && isNaN(Date.parse(body.fechaFin))) {
+      delete body.fechaFin;
+    }
+
+
     return this.http.post<any>(`${this.apiUrl}/consultar`, body, {
       headers: this.headers,
     });

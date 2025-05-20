@@ -10,40 +10,36 @@
   <div class="d-flex flex-wrap gap-2 align-items-center mb-3 justify-content-between">
     <button type="button" class="btn btn-principal me-3 mb-2 flex-grow-1 flex-md-grow-0" (click)="abrirModalRegistro()">Registro incidente</button>
     <a class="text-success" href="/incidents/db-query">Base de datos empresa</a>
-
-    <div class="input-group mb-2">
-      <!-- <input type="text" class="form-control" placeholder="Buscar Incidente" [(ngModel)]="filtro.descripcion" (keyup)="obtenerIncidentes()"> -->
-      <button class="btn btn-outline-secondary" type="button">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
   </div>
 
   <!-- Filtros -->
-  <form class="row g-3 align-items-end mb-4">
-    <div class="col-auto">
-      <label for="fechaInicial" class="form-label">Desde</label>
-      <input type="date" id="fechaInicial" class="form-control">
-    </div>
-    <div class="col-auto">
-      <label for="fechaFinal" class="form-label">Hasta</label>
-      <input type="date" id="fechaFinal" class="form-control">
-    </div>
-    <div class="col-auto">
-      <label class="form-label d-block">Estado</label>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="cerrado" checked>
-        <label class="form-check-label" for="cerrado">Cerrado</label>
+  <div class="mb-4">
+    <form class="d-flex align-items-end flex-wrap gap-3 mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <label class="form-label mb-0">Estado:</label>
+        <div class="form-check form-check-inline mb-0">
+          <input class="form-check-input" type="checkbox" id="cerrado" [(ngModel)]="estadosSeleccionados.INACTIVO"
+            name="estadoInactivo">
+          <label class="form-check-label" for="cerrado">Cerrado</label>
+        </div>
+        <div class="form-check form-check-inline mb-0">
+          <input class="form-check-input" type="checkbox" id="abierto" [(ngModel)]="estadosSeleccionados.ACTIVO"
+            name="estadoActivo">
+          <label class="form-check-label" for="abierto">Abierto</label>
+        </div>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="abierto" checked>
-        <label class="form-check-label" for="abierto">Abierto</label>
+
+      <div>
+        <button type="submit" class="btn btn-principal" (click)="aplicarFiltros()">Aplicar</button>
       </div>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-principal">Aplicar</button>
-    </div>
-  </form>
+
+      <div class="flex-grow-1">
+        <input type="text" class="form-control" placeholder="Buscar en todos los campos" [(ngModel)]="terminoBusqueda"
+          name="busqueda">
+      </div>
+    </form>
+  </div>
+
 
   <!-- Tabla de Incidentes -->
   <p *ngIf="incidentes.length === 0">No se encontraron incidentes.</p>
@@ -51,7 +47,6 @@
     <table class="table table-striped table-hover" *ngIf="incidentes.length > 0">
       <thead class="table-success table-header-custom">
         <tr>
-          <!-- <th>#</th> -->
           <th>ID</th>
           <th>Tipo Doc. Usuario</th>
           <th>Documento Usuario</th>
@@ -63,20 +58,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let incidente of incidentes">
-          <!-- <td>{{i + 1}}</td> -->
+        <tr *ngFor="let incidente of incidentessFiltrados()">
           <td>{{ incidente.id }}</td>
           <td>{{ incidente.tipoDocumentoUsuario }}</td>
           <td>{{ incidente.numDocumentoUsuario }}</td>
           <td>{{ incidente.numDocumentoCliente }}</td>
           <td>{{ incidente.descripcion }}</td>
           <td>{{ incidente.estado }}</td>
-          <td>{{ incidente.fechaCreacion | date:'short' }}</td>
-          <!-- <td>
-            <button class="btn btn-link text-success p-0" (click)="abrirModalVerEstado(incidente)">
-              Ver estado
-            </button>
-          </td> -->
+          <td>{{ incidente.fechaCreacion }}</td>
           <td>
             <button class="btn btn-link text-success p-0" (click)="irADetalle(incidente.id.toString())">
               Ver detalle
@@ -101,6 +90,7 @@
         <li class="page-item" *ngFor="let page of [].constructor(paginacion.totalPaginas); let i = index">
           <button class="page-link"
             [class.active]="paginacion.pagina === i + 1"
+            [class.btn-pagina-activa]="paginacion.pagina === i + 1"
             (click)="cambiarPagina(i + 1)">
             {{ i + 1 }}
           </button>
@@ -130,7 +120,7 @@
 
   <!-- Botón de Generar Reporte -->
   <div class="text-center mb-3">
-    <button type="button" class="btn btn-principal flex-grow-1 flex-md-grow-0">Generar reporte</button>
+    <button type="button" class="btn btn-principal flex-grow-1 flex-md-grow-0" (click)="descargarIncidentesComoExcel()">Generar reporte</button>
   </div>
 
   <!-- Modal Registro Incidente -->

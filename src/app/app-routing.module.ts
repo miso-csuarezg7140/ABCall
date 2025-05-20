@@ -9,6 +9,7 @@ import { FooterComponent } from './incidents/footer/footer.component';
 import { IncidentComponent } from './incidents/incident/incident.component';
 import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
 import { DbQueryComponent } from './incidents/db-query/db-query.component';
+import { ClienteDetailComponent } from './incidents/cliente-detail/cliente-detail.component';
 
 const routes: Routes = [
   { path: 'plans', component: PlansComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
     children: [
       { path: '', component: IncidentComponent },
       { path: 'incident-detail', component: IncidentDetailComponent },
+      { path: 'detail/:id', component: ClienteDetailComponent },
       { path: 'db-query', component: DbQueryComponent },
       { path: 'detalle/:id', component: IncidentDetailComponent }
     ],
