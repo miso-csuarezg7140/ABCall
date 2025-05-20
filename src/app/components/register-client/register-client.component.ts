@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register-client.component.html',
   styleUrls: ['./register-client.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterClientComponent implements OnInit {
   cliente: Register = {
     numeroDocumento: '',
     razonSocial: '',

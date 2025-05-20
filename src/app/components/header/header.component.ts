@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from '../../services/login/login.service';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -16,13 +16,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private AuthService: AuthService
+    private LoginService: LoginService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.agente = this.AuthService.obtenerDocumentoAgente();
+    this.agente = this.LoginService.obtenerDocumentoAgente();
   }
 
 }
