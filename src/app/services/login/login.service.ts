@@ -31,4 +31,13 @@ export class LoginService {
       data
     );
   }
+
+  guardarDatosAgente(tipoDocumento: string, numeroDocumento: string) {
+    localStorage.setItem('tipoDocumento', tipoDocumento);
+    localStorage.setItem('numeroDocumento', numeroDocumento);
+  }
+
+  obtenerDocumentoAgente(): string | null {
+    return localStorage.getItem('documento');
+  }
 }
