@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
+    "file-saver": "^2.0.5",
     "js-sha512": "^0.9.0",
     "ngx-bootstrap": "^12.0.0",
     "ngx-pagination": "^6.0.3",
@@ -31,6 +32,7 @@
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.21.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
@@ -38,6 +40,7 @@
     "@angular/cli": "^17.1.0",
     "@angular/compiler-cli": "^17.1.0",
     "@types/bootstrap": "^5.2.10",
+    "@types/file-saver": "^2.0.7",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

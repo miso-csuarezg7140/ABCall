@@ -46,6 +46,12 @@
   justify-content: center;
 }
 
+.btn-pagina-activa {
+  background-color: #47BA47 !important;
+  color: white !important;
+  border-color: #47BA47 !important;
+}
+
 
 @media (max-width: 576px) {
 

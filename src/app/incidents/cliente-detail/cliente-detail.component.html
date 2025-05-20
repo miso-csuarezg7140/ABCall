@@ -1,0 +1,106 @@
+<app-header></app-header>
+
+<div *ngIf="alertaVisible" class="alert alert-success alert-dismissible fade show m-3" role="alert">
+  Gestión añadida correctamente.
+  <button type="button" class="btn-close" (click)="cerrarAlerta()" aria-label="Close"></button>
+</div>
+
+<section class="container my-5" *ngIf="detalleIncidente">
+  <div class="mb-4">
+    <h2 class="h4 fw-bold">Detalle Incidente # {{ detalleIncidente.id}}</h2>
+    <br>
+    <div class="row g-2 mb-3">
+      <div class="col-12 col-md-6">
+        <strong>Fecha: </strong> <span>{{ detalleIncidente.fechaCreacion | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Documento cLiente: </strong> <span>{{ detalleIncidente.numDocumentoCliente }}</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Documento usuario: </strong> <span>{{ detalleIncidente.tipoDocumentoUsuario}} {{ detalleIncidente.numDocumentoUsuario }}</span>
+      </div>
+      <div class="col-12 col-md-6">
+        <strong>Estado: </strong> <span class="text-success">{{ detalleIncidente.estado }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h3 class="h5 fw-bold">Descripción:</h3>
+    <p>{{ detalleIncidente.descripcion }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="h5 fw-normal ">Estado de la solución:</h5>
+    <p *ngIf="detalleIncidente.solucionado; esle sinSolucion">
+      El incidente ha sido resuelto por <strong>{{ detalleIncidente.solucionadoPor }}</strong> el <span>{{ detalleIncidente.fechaSolucion | date: 'dd/MM/yyyy HH:mm' }}</span>.
+    </p>
+
+    <ng-template #sinSolucion>
+      <p>Este incidente aún no ha sido solucionado.</p>
+    </ng-template>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="h5 fw-normal">Creado por:</h5>
+    <p>{{ detalleIncidente.creadoPor }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="h5 fw-normal">Modificado por:</h5>
+    <p>{{ detalleIncidente.modificadoPor || 'No ha sido modificado' }}</p>
+  </div>
+
+  <!-- Botones -->
+  <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+    <button type="button" class="btn btn-principal w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#modalAñadirGestion">
+      Añadir gestión
+    </button>
+
+    <button type="button" class="btn btn-principal w-100 w-md-auto">Enviar correo a usuario</button>
+  </div>
+
+  <div class="mb-3">
+    <a [routerLink]="['/incidents']" class="text-success">Atrás</a>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAñadirGestion" tabindex="-1" aria-labelledby="modalAñadirGestionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="fw-semibold modal-title" id="modalAñadirGestionLabel">Añadir gestión</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="textareaGestion" class="form-label">Descripción de la gestión:</label>
+            <textarea class="form-control" id="textareaGestion" [(ngModel)]="nuevaGestion" name="nuevaGestion" rows="4"
+              placeholder="Describe la gestión realizada en éste caso..." required></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal">
+          Cancelar</button>
+        <button type="button"
+          class="btn btn-principal"
+          [disabled]="!nuevaGestion.trim()"
+          (click)="guardarGestionAIncidente()"
+          data-bs-dismiss="modal">
+          Añadir gestión</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

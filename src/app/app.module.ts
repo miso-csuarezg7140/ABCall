@@ -24,6 +24,7 @@ import { IncidentComponent } from './incidents/incident/incident.component';
 import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
 import { DbQueryComponent } from './incidents/db-query/db-query.component';
 import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-incidente.component';
+import { ClienteDetailComponent } from './incidents/cliente-detail/cliente-detail.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RegistroIncidenteComponent } from './pages/registro-incidente/registro-
       IncidentDetailComponent,
       DbQueryComponent,
     RegistroIncidenteComponent,
+    ClienteDetailComponent,
   ],
   imports: [
     BrowserModule,
