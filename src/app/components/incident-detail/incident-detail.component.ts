@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IncidentService } from '../../services/incident.service'
+import { IncidentService } from '../../services/incident/incident.service'
 import { incidente } from '../../models/incident.model'
 
+declare var bootstrap: any
+
 @Component({
-  selector: 'app-cliente-detail',
-  templateUrl: './cliente-detail.component.html',
-  styleUrl: './cliente-detail.component.css'
+  selector: 'app-incident-detail',
+  templateUrl: './incident-detail.component.html',
+  styleUrls: ['./incident-detail.component.css'],
 })
-export class ClienteDetailComponent implements OnInit {
+export class IncidentDetailComponent implements OnInit {
   nuevaGestion: string = '';
   detalleIncidente: incidente | null = null;
   alertaVisible: boolean = false;
