@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register-client/register-client.component';
+import { RegisterClientComponent } from './components/register-client/register-client.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'register', component: RegisterClientComponent },
     ],
   },
 

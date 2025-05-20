@@ -10,10 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { AuthModule } from './components/auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { MembershipModule } from './components/membership/membership.module';
 import { HomeComponent } from './components/home/home.component';
-// import { HeaderComponent } from './home/header-home/header-home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -33,9 +32,9 @@ import { ClienteDetailComponent } from './components/cliente-detail/cliente-deta
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-      IncidentComponent,
-      IncidentDetailComponent,
-      DbQueryComponent,
+    IncidentComponent,
+    IncidentDetailComponent,
+    DbQueryComponent,
     RegistroIncidenteComponent,
     ClienteDetailComponent,
   ],

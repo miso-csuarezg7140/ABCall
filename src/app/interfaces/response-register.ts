@@ -1,6 +1,6 @@
 import { Register } from "./register"
 
-export interface responseRegister {
+export interface ResponseRegister {
   statusCode: number;
   statusDescription: string;
   data:Register[]
