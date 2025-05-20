@@ -31,6 +31,6 @@ export class AuthService {
   }
 
   obtenerDocumentoAgente(): string | null {
-    return localStorage.getItem('numeroDocumento');
+    return localStorage.getItem('documento');
   }
 }

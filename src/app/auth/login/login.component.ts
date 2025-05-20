@@ -44,7 +44,11 @@ export class LoginComponent implements OnInit {
         contrasena: this.contrasena,
       };
       this.loginService.loginAgente(datosAgente).subscribe({
-        next: () => this.router.navigate(['/incidents']),
+        next: (response) => {
+          console.log("RESPUESTA: ", response)
+          this.router.navigate(['/incidents'])
+          localStorage.setItem('documento', datosAgente.numeroDocumento)
+        },
         error: () =>
           this.snackBar.open('Error al iniciar sesión como agente.', 'Cerrar', {
             duration: 3000,
