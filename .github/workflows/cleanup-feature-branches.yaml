@@ -1,0 +1,16 @@
+name: Cleanup Feature Branches
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup-feature-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete feature branch
+        if: ${{ github.event.pull_request.merged == true && (startsWith(github.event.pull_request.head.ref, 'feat/') || startsWith(github.event.pull_request.head.ref, 'feature/')) && github.event.pull_request.base.ref == 'develop' }}
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          branches: ${{ github.event.pull_request.head.ref }}
