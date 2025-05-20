@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IncidentService } from '../../services/incident.service';
+import { IncidentService } from '../../services/incident/incident.service';
 
 @Component({
   selector: 'app-registro-incidente',
-  templateUrl: './registro-incidente.component.html',
-  styleUrl: './registro-incidente.component.css'
+  templateUrl: './register-incident.component.html',
+  styleUrl: './register-incident.component.css'
 })
 export class RegistroIncidenteComponent {
 

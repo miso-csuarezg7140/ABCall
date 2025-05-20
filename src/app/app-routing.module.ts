@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { PlansComponent } from './membership/plans/plans.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './incidents/header/header.component';
-import { FooterComponent } from './incidents/footer/footer.component';
-import { IncidentComponent } from './incidents/incident/incident.component';
-import { IncidentDetailComponent } from './incidents/incident-detail/incident-detail.component';
-import { DbQueryComponent } from './incidents/db-query/db-query.component';
-import { ClienteDetailComponent } from './incidents/cliente-detail/cliente-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register-client/register-client.component';
+import { PlansComponent } from './components/plans/plans.component';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { IncidentComponent } from './components/incident/incident.component';
+import { IncidentDetailComponent } from './components/incident-detail/incident-detail.component';
+import { DbQueryComponent } from './components/db-query/db-query.component';
+import { ClienteDetailComponent } from './components/cliente-detail/cliente-detail.component';
 
 const routes: Routes = [
   { path: 'plans', component: PlansComponent },
