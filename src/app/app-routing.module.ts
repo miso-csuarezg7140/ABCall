@@ -9,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { IncidentComponent } from './components/incident/incident.component';
 import { IncidentDetailComponent } from './components/incident-detail/incident-detail.component';
 import { DbQueryComponent } from './components/db-query/db-query.component';
-import { ClienteDetailComponent } from './components/cliente-detail/cliente-detail.component';
+import { ClienteDetailComponent } from './components/client-detail/client-detail.component';
 
 const routes: Routes = [
   { path: 'plans', component: PlansComponent },

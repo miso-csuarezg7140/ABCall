@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthModule } from './modules/auth/auth.module';
-import { MembershipModule } from './components/membership/membership.module';
+import { MembershipModule } from './modules/membership/membership.module';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,7 +23,7 @@ import { IncidentComponent } from './components/incident/incident.component';
 import { IncidentDetailComponent } from './components/incident-detail/incident-detail.component';
 import { DbQueryComponent } from './components/db-query/db-query.component';
 import { RegistroIncidenteComponent } from './components/register-incident/register-incident.component';
-import { ClienteDetailComponent } from './components/cliente-detail/cliente-detail.component';
+import { ClienteDetailComponent } from './components/client-detail/client-detail.component';
 
 
 @NgModule({

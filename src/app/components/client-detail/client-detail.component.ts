@@ -6,8 +6,8 @@ import { incidente } from '../../models/incident.model'
 
 @Component({
   selector: 'app-cliente-detail',
-  templateUrl: './cliente-detail.component.html',
-  styleUrl: './cliente-detail.component.css'
+  templateUrl: './client-detail.component.html',
+  styleUrl: './client-detail.component.css'
 })
 export class ClienteDetailComponent implements OnInit {
   nuevaGestion: string = '';
