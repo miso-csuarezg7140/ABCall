@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Login } from '../../interfaces/login';
-import { responseLogin } from '../../interfaces/responseLogin';
+import { LoginClient } from '../../interfaces/login-client';
+import { ResponseLoginClient } from '../../interfaces/response-login-client';
+import { LoginAgent } from '../../interfaces/login-agent';
+import { ResponseLoginAgent } from '../../interfaces/response-login-agent';
 
 @Injectable({
   providedIn: 'root',
@@ -15,20 +17,16 @@ export class LoginService {
   constructor() {}
 
   // Cliente
-  loginCliente(data: Login): Observable<responseLogin> {
-    return this.http.post<responseLogin>(
+  loginCliente(data: LoginClient): Observable<ResponseLoginClient> {
+    return this.http.post<ResponseLoginClient>(
       `${this.baseUrl}/clientes/v1/autenticar`,
       data
     );
   }
 
   // Agente
-  loginAgente(data: {
-    tipoDocumento: string;
-    numeroDocumento: string;
-    contrasena: string;
-  }): Observable<responseLogin> {
-    return this.http.post<responseLogin>(
+  loginAgente(data: LoginAgent): Observable<ResponseLoginAgent> {
+    return this.http.post<ResponseLoginAgent>(
       `${this.baseUrl}/agentes/v1/autenticar`,
       data
     );
