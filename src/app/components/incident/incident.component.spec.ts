@@ -363,21 +363,24 @@ describe('IncidentComponent', () => {
         // Prepare mock incident
         const mockIncident = { id: 1, descripcion: 'Test' };
 
-        // Spy on bootstrap Modal using our mockBootstrap reference
-        const modalSpy = spyOn(mockBootstrap.Modal.prototype, 'show');
+        // Create a mock modal instance with a spy
+        const modalMock = { show: jasmine.createSpy('show') };
 
-        // Create a mock element
+        // Spy on window.bootstrap.Modal constructor to return our mock instance
+        spyOn(window.bootstrap, 'Modal').and.returnValue(modalMock);
+
+        // Create a mock element to avoid getElementById returning null
         document.body.innerHTML = '<div id="modalVerEstado"></div>';
 
         // Call the method
         component.abrirModalVerEstado(mockIncident);
 
-        // Check that service was called
+        // Check service was called
         expect(incidentServiceMock.obtenerDetalleIncidente).toHaveBeenCalledWith(1);
 
-        // Check that incident was selected and modal was opened
+        // Check incident was selected and modal was opened
         expect(component.incidenteSeleccionado).toEqual(mockIncident);
-        expect(modalSpy).toHaveBeenCalled();
+        expect(modalMock.show).toHaveBeenCalled();
       });
     });
 

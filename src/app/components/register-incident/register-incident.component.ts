@@ -10,8 +10,8 @@ export class RegistroIncidenteComponent {
 
   incidente = {
     tipoDocumentoUsuario: '',
-    numDocumentoUsuario: null,
-    numDocumentoCliente: null,
+    numDocumentoUsuario: null as number | null,
+    numDocumentoCliente: null as number | null,
     descripcion: ''
   };
 
