@@ -1,4 +1,4 @@
-export interface Cliente {
+export interface Client {
   tipoDocumentoUsuario: string;
   numDocumentoUsuario: number;
   numDocumentoCliente: number;

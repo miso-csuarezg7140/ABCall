@@ -16,6 +16,7 @@ import './app/interfaces/response-login-client';
 import './app/interfaces/response-register';
 
 // Componentes
+import './app/app.component'
 import './app/components/client-detail/client-detail.component';
 import './app/components/db-query/db-query.component';
 import './app/components/footer/footer.component';
@@ -31,7 +32,7 @@ import './app/components/register-incident/register-incident.component';
 
 // Modelos
 import './app/models/incident.model';
-import './app/models/cliente.models';
+import './app/models/client.models';
 
 // Modulos
 import './app/app-routing.module';

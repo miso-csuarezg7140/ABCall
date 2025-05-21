@@ -24,7 +24,7 @@ export class DbQueryComponent implements OnInit {
         if (resp.statusCode === 200) {
           this.clientes = resp.data;
           this.clientesFiltrados = [...this.clientes]; 
-          console.log('Clientes cargados:', this.clientes);
+          //console.log('Clientes cargados:', this.clientes);
         } else {
           console.error('Error al obtener clientes:', resp.statusDescription);
         }
