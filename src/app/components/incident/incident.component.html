@@ -8,7 +8,8 @@
 
   <!-- Botón Registro Incidente y Búsqueda -->
   <div class="d-flex flex-wrap gap-2 align-items-center mb-3 justify-content-between">
-    <button type="button" class="btn btn-principal me-3 mb-2 flex-grow-1 flex-md-grow-0" (click)="abrirModalRegistro()">Registro incidente</button>
+    <button type="button" class="btn btn-principal me-3 mb-2 flex-grow-1 flex-md-grow-0"
+      (click)="abrirModalRegistro()">Registro incidente</button>
     <a class="text-success" href="/incidents/db-query">Base de datos empresa</a>
   </div>
 
@@ -18,14 +19,19 @@
       <div class="d-flex align-items-center gap-2">
         <label class="form-label mb-0">Estado:</label>
         <div class="form-check form-check-inline mb-0">
-          <input class="form-check-input" type="checkbox" id="cerrado" [(ngModel)]="estadosSeleccionados.INACTIVO"
-            name="estadoInactivo">
-          <label class="form-check-label" for="cerrado">Cerrado</label>
+          <input class="form-check-input" type="radio" id="estado-activo" [(ngModel)]="estadoSeleccionado"
+            value="ACTIVO" name="estadoFiltro">
+          <label class="form-check-label" for="estado-activo">Activo</label>
         </div>
         <div class="form-check form-check-inline mb-0">
-          <input class="form-check-input" type="checkbox" id="abierto" [(ngModel)]="estadosSeleccionados.ACTIVO"
-            name="estadoActivo">
-          <label class="form-check-label" for="abierto">Abierto</label>
+          <input class="form-check-input" type="radio" id="estado-en-proceso" [(ngModel)]="estadoSeleccionado"
+            value="EN_PROCESO" name="estadoFiltro">
+          <label class="form-check-label" for="estado-en-proceso">En proceso</label>
+        </div>
+        <div class="form-check form-check-inline mb-0">
+          <input class="form-check-input" type="radio" id="estado-cerrado" [(ngModel)]="estadoSeleccionado"
+            value="CERRADO" name="estadoFiltro">
+          <label class="form-check-label" for="estado-cerrado">Cerrado</label>
         </div>
       </div>
 
@@ -81,24 +87,20 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item" [class.disabled]="paginacion.pagina == 1">
-          <button class="page-link btn-paginacion"
-           (click)="cambiarPagina(paginacion.pagina - 1)">
-           Anterior
+          <button class="page-link btn-paginacion" (click)="cambiarPagina(paginacion.pagina - 1)">
+            Anterior
           </button>
         </li>
 
         <li class="page-item" *ngFor="let page of [].constructor(paginacion.totalPaginas); let i = index">
-          <button class="page-link"
-            [class.active]="paginacion.pagina === i + 1"
-            [class.btn-pagina-activa]="paginacion.pagina === i + 1"
-            (click)="cambiarPagina(i + 1)">
+          <button class="page-link" [class.active]="paginacion.pagina === i + 1"
+            [class.btn-pagina-activa]="paginacion.pagina === i + 1" (click)="cambiarPagina(i + 1)">
             {{ i + 1 }}
           </button>
         </li>
 
         <li class="page-item" [class.disabled]="paginacion.pagina == paginacion.totalPaginas">
-          <button class="page-link btn-paginacion"
-            (click)="cambiarPagina(paginacion.pagina + 1)">
+          <button class="page-link btn-paginacion" (click)="cambiarPagina(paginacion.pagina + 1)">
             Siguiente
           </button>
         </li>
@@ -120,7 +122,8 @@
 
   <!-- Botón de Generar Reporte -->
   <div class="text-center mb-3">
-    <button type="button" class="btn btn-principal flex-grow-1 flex-md-grow-0" (click)="descargarIncidentesComoExcel()">Generar reporte</button>
+    <button type="button" class="btn btn-principal flex-grow-1 flex-md-grow-0"
+      (click)="descargarIncidentesComoExcel()">Generar reporte</button>
   </div>
 
   <!-- Modal Registro Incidente -->
@@ -139,24 +142,24 @@
             <div class="form-group position-relative">
               <label for="tipoDocumentoUsuario" class="form-label">Tipo de Documento del Usuario</label>
               <select class="form-control" id="tipoDocumentoUsuario" [(ngModel)]="nuevoIncidente.tipoDocumentoUsuario"
-              name="tipoDocumentoUsuario">
-              <option value="1">Cédula de Ciudadanía</option>
-              <option value="2">Cédula de Extranjería</option>
-              <option value="3">Pasaporte</option>
-              <option value="4">Carnet diplomático</option>
-              <option value="5">Permiso especial de permanencia</option>
-              <option value="6">Número único de identificación personal</option>
-            </select>
+                name="tipoDocumentoUsuario">
+                <option value="1">Cédula de Ciudadanía</option>
+                <option value="2">Cédula de Extranjería</option>
+                <option value="3">Pasaporte</option>
+                <option value="4">Carnet diplomático</option>
+                <option value="5">Permiso especial de permanencia</option>
+                <option value="6">Número único de identificación personal</option>
+              </select>
             </div>
             <div class="mb-3">
               <label for="numDocumentoUsuario" class="form-label">Número de Documento del Usuario</label>
-              <input type="number" class="form-control" id="numDocumentoUsuario" [(ngModel)]="nuevoIncidente.numDocumentoUsuario"
-                name="numDocumentoUsuario">
+              <input type="number" class="form-control" id="numDocumentoUsuario"
+                [(ngModel)]="nuevoIncidente.numDocumentoUsuario" name="numDocumentoUsuario">
             </div>
             <div class="mb-3">
               <label for="numDocumentoCliente" class="form-label">Número de Documento del Cliente</label>
-              <input type="number" class="form-control" id="numDocumentoCliente" [(ngModel)]="nuevoIncidente.numDocumentoCliente"
-                name="numDocumentoCliente">
+              <input type="number" class="form-control" id="numDocumentoCliente"
+                [(ngModel)]="nuevoIncidente.numDocumentoCliente" name="numDocumentoCliente">
             </div>
             <div class="mb-3">
               <label for="descripcion" class="form-label">Descripción del incidente</label>
@@ -189,7 +192,8 @@
         <div class="modal-body">
           <p><strong>ID del Incidente: </strong> #{{ incidenteSeleccionado?.id }}</p>
           <p><strong>Estado Actual: </strong> {{ incidenteSeleccionado?.estado || 'Estado no disponible' }}</p>
-          <p><strong>Última actualización: </strong> {{ incidenteSeleccionado?.fechaModificacion ? (incidenteSeleccionado.fechaModificacion | date:'short') : 'Sin modificar aún' }}
+          <p><strong>Última actualización: </strong> {{ incidenteSeleccionado?.fechaModificacion ?
+            (incidenteSeleccionado.fechaModificacion | date:'short') : 'Sin modificar aún' }}
           </p>
 
         </div>

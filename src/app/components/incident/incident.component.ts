@@ -30,10 +30,7 @@ export class IncidentComponent implements OnInit {
     descripcion: '',
   };
 
-  estadosSeleccionados: any = {
-    INACTIVO: false,
-    ACTIVO: false
-  }
+  estadoSeleccionado: string = '';
   // Filtro inicial (vacío, se llenará dinámicamente)
   filtro: any = {
     tipoDocUsuario: '',
@@ -57,7 +54,7 @@ export class IncidentComponent implements OnInit {
     private incidentService: IncidentService,
     private router: Router,
     private excelService: ExcelService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerIncidentes();
@@ -120,13 +117,9 @@ export class IncidentComponent implements OnInit {
   }
 
   aplicarFiltros(): void {
-    const estados = Object.keys(this.estadosSeleccionados).filter(
-      key => this.estadosSeleccionados[key]
-    );
-
     const filtroAplicado = {
       ...this.filtro,
-      estado: estados.join(','),
+      estado: this.estadoSeleccionado ? (this.estadoSeleccionado === 'EN_PROCESO' ? 'EN PROCESO' : this.estadoSeleccionado) : '',
       pagina: 1
     };
 
@@ -138,7 +131,7 @@ export class IncidentComponent implements OnInit {
       error: (err) => console.error('Error al aplicar filtros', err)
     });
   }
-
+  
   obtenerIncidentes(): void {
 
     this.incidentService.consultarIncidentesFiltrados(this.filtro).subscribe({
