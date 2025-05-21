@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IncidentService } from '../../services/incident/incident.service'
-import { incidente } from '../../models/incident.model'
+import { Incident } from '../../models/incident.model'
 
 declare var bootstrap: any
 
@@ -13,7 +13,7 @@ declare var bootstrap: any
 })
 export class IncidentDetailComponent implements OnInit {
   nuevaGestion: string = '';
-  detalleIncidente: incidente | null = null;
+  detalleIncidente: Incident | null = null;
   alertaVisible: boolean = false;
   urlIncidentes: string = 'https://abcall-gateway-bwh34xmh.uc.gateway.dev/service/abcall';
 
