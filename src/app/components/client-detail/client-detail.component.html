@@ -32,7 +32,7 @@
 
   <div class="mb-4">
     <h5 class="h5 fw-normal ">Estado de la solución:</h5>
-    <p *ngIf="detalleIncidente.solucionado; esle sinSolucion">
+    <p *ngIf="detalleIncidente.solucionado; else sinSolucion">
       El incidente ha sido resuelto por <strong>{{ detalleIncidente.solucionadoPor }}</strong> el <span>{{ detalleIncidente.fechaSolucion | date: 'dd/MM/yyyy HH:mm' }}</span>.
     </p>
 
