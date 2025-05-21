@@ -33,9 +33,27 @@ jobs:
 
     - name: Verificar cobertura de pruebas
       run: |
-        # Extraer el porcentaje de cobertura del informe lcov
-        COVERAGE=$(cat coverage/lcov.info | grep -E "SF:.+\.ts$" -A 1 | grep -E "^LH:\d+$|^LF:\d+$" | \
-          awk 'BEGIN {covered=0; total=0} /LH:/ {covered+=$2} /LF:/ {total+=$2} END {print covered/total*100}')
+        # Comprobar que el informe de cobertura existe
+        if [ ! -f "coverage/coverage-summary.json" ]; then
+          echo "Usando alternativa para extraer la cobertura..."
+          
+          # Método alternativo para lcov.info más robusto
+          if [ -f "coverage/lcov.info" ]; then
+            COVERAGE=$(cat coverage/lcov.info | grep -E "SF:.+\.ts$" -A 1 | grep -E "^LH:\d+$|^LF:\d+$" | \
+              awk 'BEGIN {covered=0; total=0} /LH:/ {covered+=$2} /LF:/ {total+=$2} END {print (total > 0) ? (covered/total*100) : 0}')
+          else
+            # Extraer directamente del output del test
+            COVERAGE=$(cat $(find . -name "karma-result-*.log" | sort | tail -n1) | grep -A 5 "Coverage summary" | grep "Lines" | awk '{print $3}' | tr -d '%')
+            if [ -z "$COVERAGE" ]; then
+              echo "Error: No se pudo extraer la cobertura"
+              exit 1
+            fi
+          fi
+        else
+          # Usar el JSON summary si existe
+          COVERAGE=$(cat coverage/coverage-summary.json | grep -o '"lines":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9.]*' | grep -o 'pct":[0-9.]*' | cut -d':' -f2)
+        fi
+        
         echo "Cobertura total: $COVERAGE%"
         
         # Verificar si la cobertura es menor que 80%
