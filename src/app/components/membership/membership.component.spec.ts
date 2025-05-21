@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PlansComponent } from './plans.component';
+import { MembershipComponent } from './membership.component';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('PlansComponent', () => {
-  let component: PlansComponent;
-  let fixture: ComponentFixture<PlansComponent>;
+describe('MembershipComponent', () => {
+  let component: MembershipComponent;
+  let fixture: ComponentFixture<MembershipComponent>;
   let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PlansComponent],
+      declarations: [MembershipComponent],
       schemas: [NO_ERRORS_SCHEMA] // Para evitar errores de componentes hijos no declarados
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlansComponent);
+    fixture = TestBed.createComponent(MembershipComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
     fixture.detectChanges();
@@ -34,27 +34,27 @@ describe('PlansComponent', () => {
     expect(spyOnInit).toHaveBeenCalled();
   });
 
-  it('should be identifiable as PlansComponent instance', () => {
+  it('should be identifiable as MembershipComponent instance', () => {
     // Verificar que la instancia es del tipo correcto
-    expect(component instanceof PlansComponent).toBe(true);
+    expect(component instanceof MembershipComponent).toBe(true);
   });
 
   it('should render content in the DOM', () => {
     fixture.detectChanges();
     const compiledComponent = fixture.nativeElement;
-    
+
     // Verificar que el elemento host existe
     expect(compiledComponent).toBeTruthy();
-    
+
     // Nota: Aquí puedes añadir verificaciones específicas basadas en el contenido
     // de tu plantilla HTML cuando la implementes, por ejemplo:
-    // expect(compiledComponent.querySelector('.plans-title')).toBeTruthy();
+    // expect(compiledComponent.querySelector('.membership-title')).toBeTruthy();
   });
 
   it('should have the correct component selector', () => {
     // Verificar que el componente tiene el selector correcto
     const componentDefinition = component.constructor as any;
-    expect(componentDefinition.ɵcmp.selectors[0][0]).toBe('app-plans');
+    expect(componentDefinition.ɵcmp.selectors[0][0]).toBe('app-membership');
   });
 
   // Si en el futuro agregas propiedades o métodos a este componente,

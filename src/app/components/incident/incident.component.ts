@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IncidentService } from '../../services/incident/incident.service';
-import { incidente } from '../../models/incident.model';
+import { Incident } from '../../models/incident.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Cliente } from '../../models/cliente.models';
+import { Client } from '../../models/client.models';
+import { ExcelService } from '../../services/excel/excel.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
@@ -19,7 +20,7 @@ export class IncidentComponent implements OnInit {
   agente: string | null = '';
 
   incidenteSeleccionado: any = null;
-  clientes: Cliente[] = [];
+  clientes: Client[] = [];
   terminoBusqueda: string = '';
 
   nuevoIncidente = {
@@ -54,7 +55,8 @@ export class IncidentComponent implements OnInit {
 
   constructor(
     private incidentService: IncidentService,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class IncidentComponent implements OnInit {
         this.limpiarFormulario();
       },
       error: (err) => {
-        console.error('Error al crear incidente:', err);
+        //console.error('Error al crear incidente:', err);
         Swal.fire('Error', 'No se pudo crear el incidente.', 'error');
       },
     });
@@ -109,7 +111,7 @@ export class IncidentComponent implements OnInit {
 
     this.incidentService.consultarIncidentesFiltrados(filtroInicial).subscribe({
       next: (data) => {
-        console.log('Datos del filtro obtenidos del backend:', data);
+        //console.log('Datos del filtro obtenidos del backend:', data);
         this.incidentes = data.data.data
         this.paginacion = data.data.paginacion
       },
@@ -142,22 +144,22 @@ export class IncidentComponent implements OnInit {
     this.incidentService.consultarIncidentesFiltrados(this.filtro).subscribe({
       next: (response) => {
         if (response.statusCode === 200) {
-          console.log('Respuesta del servidor:', response.data.data);
+          //console.log('Respuesta del servidor:', response.data.data);
           this.incidentes = response.data.data;
           this.paginacion = response.data.paginacion;
 
           this.incidentes = response.data.data;
           this.paginacion = response.data.paginacion;
-          console.log('Incidentes asignados:', this.incidentes);
+          //console.log('Incidentes asignados:', this.incidentes);
         } else {
-          console.error(
+          /*console.error(
             'Error al consultar incidentes:',
             response.statusDescription
-          );
+          );*/
         }
       },
       error: (err) => {
-        console.error('Error en la petición al obtener los incidentes', err);
+        //console.error('Error en la petición al obtener los incidentes', err);
       },
     });
   }
@@ -168,7 +170,7 @@ export class IncidentComponent implements OnInit {
     }
 
     const termino = this.terminoBusqueda.toLowerCase();
-    console.log("RESULTADO", this.incidentes)
+    //console.log("RESULTADO", this.incidentes)
 
     return this.incidentes.filter(incidente =>
       Object.values(incidente).some(valor =>
@@ -186,8 +188,8 @@ export class IncidentComponent implements OnInit {
     this.incidentService
       .obtenerDetalleIncidente(incidente.id)
       .subscribe((detalle) => {
-        console.log('Detalle completo:', detalle);
-        console.log('Detalle.data:', detalle.data);
+        //console.log('Detalle completo:', detalle);
+        //console.log('Detalle.data:', detalle.data);
         this.incidenteSeleccionado = incidente;
         const modal = new bootstrap.Modal(
           document.getElementById('modalVerEstado')!
@@ -203,7 +205,7 @@ export class IncidentComponent implements OnInit {
     modal.show();
   }
 
-  seleccionarIncidente(inc: incidente): void {
+  seleccionarIncidente(inc: Incident): void {
     this.incidenteSeleccionado = inc;
   }
 
@@ -212,13 +214,12 @@ export class IncidentComponent implements OnInit {
   }
 
   descargarIncidentesComoExcel(): void {
-
     this.incidentService.consultarIncidentesFiltrados(this.filtroSinPaginacion).subscribe({
       next: (response) => {
-        if (response.statusCode === 200) {
+        if (response.statusCode === 200 && response.data && response.data.data) {
           const incidentes = response.data.data;
 
-          const data = incidentes.map((inc: any) => ({
+          const dataForExcel = incidentes.map((inc: any) => ({
             ID: inc.id,
             TipoDocumento: inc.tipoDocumentoUsuario,
             DocumentoUsuario: inc.numDocumentoUsuario,
@@ -228,17 +229,18 @@ export class IncidentComponent implements OnInit {
             FechaCreación: inc.fechaCreacion
           }));
 
-          const worksheet = XLSX.utils.json_to_sheet(data);
-          const workbook = { Sheets: { 'Incidentes': worksheet }, SheetNames: ['Incidentes'] };
-          const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-          const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-          saveAs(blob, 'incidentes.xlsx');
+          try {
+            this.excelService.generateExcel(dataForExcel, 'incidentes.xlsx', 'Incidentes');
+          } catch (excelError) {
+            Swal.fire('Error de Exportación', 'No se pudo generar el archivo Excel.', 'error');
+          }
+
         } else {
-          console.error('Error al obtener incidentes:', response.statusDescription);
+          Swal.fire('Error de Datos', `No se pudieron obtener los incidentes para exportar: ${response.statusDescription || 'Respuesta inesperada.'}`, 'error');
         }
       },
       error: (err) => {
-        console.error('Error al descargar incidentes en Excel:', err);
+        Swal.fire('Error de Red', 'Ocurrió un error al intentar descargar los incidentes.', 'error');
       }
     });
   }

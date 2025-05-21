@@ -1,4 +1,4 @@
-export interface incidente {
+export interface Incident {
   id: number;
   tipoDocumentoUsuario: string;
   numDocumentoUsuario: number;
