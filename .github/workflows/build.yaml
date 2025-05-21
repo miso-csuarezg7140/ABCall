@@ -25,6 +25,26 @@ jobs:
       run: |
         npm ci
         npm install -g @angular/cli
+    
+    - name: Ejecutar pruebas unitarias
+      run: |
+        # Ejecutar pruebas con cobertura
+        ng test --no-watch --code-coverage
+
+    - name: Verificar cobertura de pruebas
+      run: |
+        # Extraer el porcentaje de cobertura del informe lcov
+        COVERAGE=$(cat coverage/lcov.info | grep -E "SF:.+\.ts$" -A 1 | grep -E "^LH:\d+$|^LF:\d+$" | \
+          awk 'BEGIN {covered=0; total=0} /LH:/ {covered+=$2} /LF:/ {total+=$2} END {print covered/total*100}')
+        echo "Cobertura total: $COVERAGE%"
+        
+        # Verificar si la cobertura es menor que 80%
+        if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+          echo "La cobertura de pruebas del $COVERAGE% está por debajo del límite mínimo requerido del 80%"
+          exit 1
+        else
+          echo "La cobertura de pruebas del $COVERAGE% supera el mínimo requerido del 80%"
+        fi
 
     - name: Verificar build Angular
       run: |
