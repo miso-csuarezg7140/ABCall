@@ -287,11 +287,8 @@ describe('IncidentComponent', () => {
 
     describe('aplicarFiltros', () => {
       it('should apply selected filters and update results', () => {
-        // Setup initial state
-        component.estadosSeleccionados = {
-          INACTIVO: true,
-          ACTIVO: false
-        };
+        // Setup initial state with single selection (string) instead of multiple (object)
+        component.estadoSeleccionado = 'INACTIVO';
 
         component.filtro = {
           tipoDocUsuario: 'CC',
@@ -316,6 +313,39 @@ describe('IncidentComponent', () => {
         // Check that component data was updated
         expect(component.incidentes).toEqual(mockIncidents);
         expect(component.paginacion).toEqual(mockPagination);
+      });
+
+      // Add test for "EN PROCESO" special case handling
+      it('should convert EN_PROCESO to "EN PROCESO" in filter', () => {
+        // Setup state with EN_PROCESO
+        component.estadoSeleccionado = 'EN_PROCESO';
+        component.filtro = { pagina: '1' };
+
+        incidentServiceMock.consultarIncidentesFiltrados.calls.reset();
+        component.aplicarFiltros();
+
+        // Check service was called with correctly formatted state
+        expect(incidentServiceMock.consultarIncidentesFiltrados).toHaveBeenCalledWith(
+          jasmine.objectContaining({
+            estado: 'EN PROCESO'
+          })
+        );
+      });
+
+      it('should handle empty state selection', () => {
+        // Setup with no state selected
+        component.estadoSeleccionado = '';
+        component.filtro = { pagina: '1' };
+
+        incidentServiceMock.consultarIncidentesFiltrados.calls.reset();
+        component.aplicarFiltros();
+
+        // Check service was called with empty state
+        expect(incidentServiceMock.consultarIncidentesFiltrados).toHaveBeenCalledWith(
+          jasmine.objectContaining({
+            estado: ''
+          })
+        );
       });
     });
 
